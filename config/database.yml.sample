@@ -1,0 +1,19 @@
+defaults: &defaults
+	adaptor: postgresql
+	host: 127.0.0.1
+	port: 5432
+	username: db_username
+	password: db_password
+	encoding: unicode
+	
+development:
+	<<: *defaults
+	database: status_update_dev
+	
+test:
+	<<: *defaults
+	database: status_update_test
+	
+production:
+	<<: *defaults
+	database: status_update_prod
