@@ -1,7 +1,34 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+# Roles
+['Admin', 'Super Admin', 'Project Co-ordinator', 'Project Manager', 'Team Lead', 'Member'].each do |role|
+  Role.create(:name => role, :active => true)
+end
+
+# Activities
+['Code', 'Design', 'Admin', 'Database', 'Unit Test', 'Timebox', 'Meeting', 'Automation', 'Test Design', 'Deployment', 'Documentation', 'Analysis', 'Training'].each do |activity|
+  Activity.create(:name => activity)
+end
+
+# Teams
+[
+  'DIGITAL E2E',
+  'EIS MAINTENANCE',
+  'BI',
+  'QTP AUTOMATION',
+  'TECHNICAL WRITERS',
+  'PROJECT CORDINATION',
+  'EXCLUSIVITY 15',
+  'ZOLTAR',
+  'Sales Portal',
+  'DBA',
+  'Omega & Partner Portal (ROR)',
+  'Secondary Duplicate check',
+  'Deployment Tool',
+  'Sales on Boarding',
+  'Modify Authorized Owner Logic for CAN Capital APIs',
+  'Integration Digital E2E and CAN Connect',
+  'CRM',
+  'EIS LITE',
+  'OUTLOOK AGENTS'
+].each do |team|
+  Team.create(:name => team, :description => team)
+end

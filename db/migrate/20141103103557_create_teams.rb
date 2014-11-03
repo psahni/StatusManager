@@ -6,5 +6,10 @@ class CreateTeams < ActiveRecord::Migration
       t.text :description
       t.timestamps
     end
+    
+    [:name, :code].each do |field|
+      add_index :teams, field
+    end
+    
   end
 end

@@ -14,5 +14,10 @@ class CreateMembers < ActiveRecord::Migration
       t.boolean :soft_delete, :default => false
       t.timestamps
     end
+    
+    [:role_id, :manager_id, :name, :active].each do |field|
+      add_index :members, field
+    end
+    
   end
 end
