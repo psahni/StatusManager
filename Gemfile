@@ -7,11 +7,24 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'sass-rails', '~> 4.0.0'
 gem 'coffee-rails', '~> 4.0.0'
-
-
 gem 'jquery-rails'
 
+gem 'bootstrap-sass', '~> 3.0.2.0'
+gem 'devise'
+gem "exception_notification", '~> 4.0.1'
+
+group :development do
+  #...
+end
+
+group :test do
+  gem 'rspec-rails'
+end
+
+group :production do
+  gem 'unicorn'
+end
+
 group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
