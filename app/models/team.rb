@@ -5,5 +5,6 @@ class Team < ActiveRecord::Base
   
   # Associations
   has_many :members, :through => :teams_members, :dependent => :destroy
+  belongs_to :company
   
 end
