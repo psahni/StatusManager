@@ -1,3 +1,6 @@
+# Company
+Company.where(name: 'Trantor Inc').first_or_create(name: 'Trantor Inc', email: 'moin.haidar@trantorinc.com')
+
 # Roles
 ['Admin', 'Super Admin', 'Project Co-ordinator', 'Project Manager', 'Team Lead', 'Member'].each do |role|
   Role.create(:name => role, :active => true)
