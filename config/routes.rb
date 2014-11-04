@@ -1,5 +1,6 @@
 StatusManager::Application.routes.draw do
   
+  mount RailsAdmin::Engine => '/status-manager-admin', as: 'rails_admin'
   root 'home#index'
 
   # Example of regular route:
