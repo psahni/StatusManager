@@ -14,7 +14,7 @@ gem 'devise'
 gem "exception_notification", '~> 4.0.1'
 
 group :development do
-  #...
+  gem 'annotate', '~> 2.6.5'
 end
 
 group :test do
