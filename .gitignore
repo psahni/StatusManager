@@ -20,3 +20,4 @@ public/assets/*.*
 docs
 public/tmp/
 config/database.yml
+.idea

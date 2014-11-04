@@ -2,6 +2,9 @@ StatusManager::Application.routes.draw do
   
   root 'home#index'
 
+  get '/email' => 'home#inline_email'
+  post '/submit_email/:token' => 'home#inline_email_submit'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
