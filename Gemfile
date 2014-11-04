@@ -15,7 +15,7 @@ gem "exception_notification", '~> 4.0.1'
 gem 'rails_admin'
 
 group :development do
-  #...
+  gem 'byebug'
 end
 
 group :test do
