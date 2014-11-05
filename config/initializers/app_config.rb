@@ -12,7 +12,7 @@ class AppConfig
     ENV['GMAIL_USER_NAME']
   end
 
-  def gmail_user_password
+  def gmail_user_password                       #Refer README
     ENV['GMAIL_USER_PASSWORD']
   end
 
