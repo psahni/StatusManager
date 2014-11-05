@@ -11,9 +11,8 @@ scheduler = Rufus::Scheduler.new
 
 
 
-scheduler.cron '50  11 * * 1-5' do
-  puts "=================================="
-  puts "Hey its a time"
-  puts Time.now
-  puts "=================================="
+scheduler.cron '10  12 * * 1-5' do
+  #puts "Sending Daily Standup Email"
+  #Notification.standup_notify.deliver
+  #puts "Mail successfully sent"
 end
