@@ -35,8 +35,8 @@ StatusManager::Application.configure do
       :address              => "smtp.gmail.com",
       :port                 => 587,
       :domain               => 'gmail.com',
-      :user_name            => 'prashant.sahni5',
-      :password             => '#$Blevel#$',
+      :user_name            => app_config.gmail_user_name,
+      :password             => app_config.gmail_user_password,
       :authentication       => 'plain',
       :enable_starttls_auto => true
   }
