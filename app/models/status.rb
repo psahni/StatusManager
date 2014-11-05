@@ -34,8 +34,4 @@ class Status < ActiveRecord::Base
     
   end
   
-  def self.export_to_xls
-    
-  end
-  
 end
