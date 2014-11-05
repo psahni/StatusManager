@@ -12,6 +12,7 @@ gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.0.2.0'
 gem 'devise'
 gem "exception_notification", '~> 4.0.1'
+gem 'spreadsheet'
 
 group :development do
   gem 'annotate', '~> 2.6.5'
