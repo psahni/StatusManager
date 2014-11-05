@@ -16,6 +16,7 @@ gem 'rails_admin'
 
 group :development do
   gem 'byebug'
+  gem 'annotate', '~> 2.6.5'
 end
 
 group :test do
