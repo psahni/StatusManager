@@ -1,0 +1,6 @@
+<%=form_tag '/time' do %>
+   Minutes: <%=select_minute(Time.now, field_name: 'minutes')%><br/>
+   Hours:   <%=select_hour(Time.now, field_name: 'hours')%>
+
+   <%=submit_tag("Save")%>
+<% end %>

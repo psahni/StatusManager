@@ -2,6 +2,7 @@ StatusManager::Application.routes.draw do
   
   root 'home#index'
 
+  match '/time' => 'home#time', :via => [:get, :post]
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
