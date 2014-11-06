@@ -1,6 +1,6 @@
 <%=form_tag '/time' do %>
    Minutes: <%=select_minute(Time.now, field_name: 'minutes')%><br/>
-   Hours:   <%=select_hour(Time.now, field_name: 'hours')%>
-
+   Hours:   <%=select_hour(Time.now, field_name: 'hours')%><br/>
+    <%=time_zone_select( "user", "time_zone", ActiveSupport::TimeZone.all.sort, model: ActiveSupport::TimeZone)%>
    <%=submit_tag("Save")%>
 <% end %>
