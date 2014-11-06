@@ -23,6 +23,7 @@ class Company < ActiveRecord::Base
 
   attr_accessor :admin_email
 
+  validate :validate_admin_member_email
   after_create :create_admin_of_company
 
   rails_admin do
@@ -32,10 +33,20 @@ class Company < ActiveRecord::Base
     end
   end
 
+  def validate_admin_member_email
+    member = Member.new(:email => self.admin_email, :role => Role.super_admin, :password => SecureRandom.hex(10))
+    unless member.valid?
+      member.errors.messages.each do |error_field, error_message|
+        error_message.each {|message| self.errors.add(error_field, message)}
+      end
+    end
+  end
+
   def create_admin_of_company
     email = self.admin_email
-    self.errors.add(:admin_email, "Admin Email can't be blank")
-    Member.create!(:email => email, :role => Role.super_admin)
+    member = Member.new(:email => email, :role => Role.super_admin, :password => SecureRandom.hex(10), :company_id => self.id)
+    member.skip_confirmation_notification!
+    member.save
   end
 
 end

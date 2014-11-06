@@ -1,0 +1,25 @@
+<%= form_for(resource, as: resource_name, url: update_member_confirmation_path(resource_name), html: { method: :put }) do |f| %>
+
+    <%= f.hidden_field :confirmation_token %>
+
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, readonly: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password %><br />
+      <%= f.password_field :password %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Let me manage!" %>
+    </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

@@ -1,0 +1,8 @@
+Hi, <br>
+Your email has been invited for by company : <%= @company.name %> <br>
+
+Please click  <%= link_to("here to continue", edit_member_confirmation_url(confirmation_token: @admin.confirmation_token)) %>
+
+<br>
+Thanks!<br>
+Status Manager team
