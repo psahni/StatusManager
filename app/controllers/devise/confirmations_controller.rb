@@ -32,13 +32,31 @@ class Devise::ConfirmationsController < DeviseController
   # GET /resource/edit
   def edit
     self.resource = resource_class.where(confirmation_token: params[:confirmation_token]).first
+    redirect_to new_member_registration_path, notice: "Invalid Token" unless resource
   end
 
   # PUT /resource/confirmation
   def update
-    resource = resource_class.where(confirmation_token: params[:confirmation_token]).first
-    resource.update_attributes(password: params[:password])
-    resource.confirm!
+    self.resource = resource_class.where(confirmation_token: params[:member][:confirmation_token]).first
+    unless resource
+      redirect_to new_member_registration_path, notice: "Invalid Token"
+      return
+    end
+    # resource.update_attributes(password: params[:password])
+    resource.password = params[:member][:password]
+    resource.password_confirmation = params[:member][:password_confirmation]
+
+
+    resource.valid?
+
+    if resource.errors.empty?
+      resource.save
+      resource.confirm!
+      redirect_to new_member_session_path, notice: "You've successfully set the password, please login to continue"
+    else
+      render :edit
+    end
+
   end
 
   protected

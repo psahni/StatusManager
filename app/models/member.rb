@@ -34,6 +34,8 @@ class Member < ActiveRecord::Base
   belongs_to :role
 
   after_create :send_invite_to_admin
+  attr_accessor :password_confirmation
+  validates_confirmation_of :password
 
   def send_invite_to_admin
      AdminNotificationMailer.welcome_email(self.company, self).deliver! if self.role == Role.super_admin
