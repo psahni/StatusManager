@@ -3,6 +3,8 @@ StatusManager::Application.routes.draw do
   root 'home#index'
 
   match '/time' => 'home#time', :via => [:get, :post]
+  match '/dashboard' => 'home#dashboard', :via => [:get]
+
   get 'export_xls', :to => 'home#export_xls'
 
   # Example of regular route:

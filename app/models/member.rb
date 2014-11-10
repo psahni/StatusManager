@@ -21,10 +21,12 @@
 class Member < ActiveRecord::Base
   
   # Validations
-  validate :name, :presence => true, :uniqueness => true
+  validate :name, :presence => true
+  validates_uniqueness_of :name
   
   # Associations
   has_one :role
 
+  belongs_to :team
 
 end

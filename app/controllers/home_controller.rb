@@ -5,7 +5,6 @@ class HomeController < ApplicationController
 
 
   def time
-
   end
   
   def export_xls
@@ -18,5 +17,11 @@ class HomeController < ApplicationController
       }
     end
   end
-  
+
+
+
+  def dashboard
+    @member = Member.where(name: 'Mhaider').first
+  end
+
 end

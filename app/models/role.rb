@@ -17,5 +17,10 @@ class Role < ActiveRecord::Base
   
   # Associations
   belongs_to :member
+
+
+  def self.admin
+    Role.where(name: 'Admin').first
+  end
   
 end
