@@ -8,7 +8,26 @@
 </head>
 <body>
 
-<%= yield %>
+<header>
+  <div class="alert-box">
+    <h1>Status Manager</h1>
+    <div id='claim-container'>
+      <div id='claim'>
 
+      </div>
+    </div>
+    <div class="pull-right top-links">
+      <ul>
+        <li><a href="#">Settings</a></li>
+        <li><a href="#">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+
+</header>
+<div class="container">
+
+    <%= yield %>
+</div>
 </body>
 </html>
