@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'source-sans-pro';
+    src: url('source-sans-pro/SourceSansPro-Bold.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/*@font-face {*/
+    /*font-family: 'Icomoon';*/
+    /*src:url('icomoon.eot');*/
+    /*src:url('icomoon.eot?#iefix') format('embedded-opentype'),*/
+    /*url('icomoon.svg#icomoon') format('svg'),*/
+    /*url('icomoon.woff') format('woff'),*/
+    /*url('icomoon.ttf') format('truetype');*/
+    /*font-weight: normal;*/
+    /*font-style: normal;*/
+/*}*/

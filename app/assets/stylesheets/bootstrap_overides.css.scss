@@ -1,6 +1,13 @@
+//Colors
+
+$white: #fff;
+$black: #222;
+$blue-shade: #577491;
+$light-blue: #699;
+
 body {
-  background: #fff;
-  color: #222;
+  background: $white;
+  color: $black;
   padding: 0;
   margin: 0;
   font-family: "Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
@@ -16,7 +23,7 @@ html, body {
 }
 div.alert-box {
   border-bottom: 1px solid #8bc;
-  background: #577491;
+  background: $blue-shade;
 }
 
 .text-center {
@@ -35,7 +42,7 @@ div.alert-box {
   transition: opacity 300ms ease-out;
   background-color: #008cba;
   border-color: #0078a0;
-  color: #fff;
+  color: $white;
 }
 
 header .alert-box{
@@ -52,8 +59,22 @@ header .alert-box{
 
 #claim-container{
   float: left;
+  margin: 1em 0;
+  font-weight: bold;
+  line-height: 0.85;
+  word-wrap: break-word;
 }
 #claim{
   text-transform: uppercase;
   font-size: 1.2em;
+}
+
+.section{
+  min-height: 250px;
+}
+.section-heading{
+  color: $light-blue;
+  font-family: source-sans-pro,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  border-bottom: 2px solid $blue-shade;
 }
