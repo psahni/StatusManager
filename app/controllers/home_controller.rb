@@ -22,7 +22,8 @@ class HomeController < ApplicationController
 
 
   def dashboard
-    @member = Member.where(name: 'Mhaider').first
+    @member = Member.where(name: 'Nishutosh Sharma').first
+    @activities =  PublicActivity::Activity.where(owner_type: 'Member')
   end
 
 end

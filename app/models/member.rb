@@ -16,6 +16,7 @@
 #  soft_delete    :boolean          default(FALSE)
 #  created_at     :datetime
 #  updated_at     :datetime
+#  team_id        :integer
 #
 
 class Member < ActiveRecord::Base

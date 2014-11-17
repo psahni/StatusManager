@@ -69,12 +69,26 @@ header .alert-box{
   font-size: 1.2em;
 }
 
+#claim .off{
+  visibility: hidden;
+}
 .section{
-  min-height: 250px;
+  min-height: 200px;
 }
 .section-heading{
   color: $light-blue;
   font-family: source-sans-pro,"Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   border-bottom: 2px solid $blue-shade;
+}
+
+.status-tootip .tooltip-inner{
+  background-color: $white !important;
+  color: $black !important;
+  width: 50em;
+  text-align: left;
+  h4{
+    font-size: 14px;
+    font-weight: bolder;
+  }
 }
