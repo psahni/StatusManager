@@ -1,0 +1,23 @@
+<section class="row section">
+  <h4 class="section-heading">Recent Activity</h4>
+  <ul>
+    <% @activities.each do |activity| %>
+        <li><%=activity.owner.name%> has updated <a href='#' data-toggle="tooltip" data-placement="right" data-status="<%=activity.trackable.to_json%>" data-html='true'>status</a></li>
+    <% end %>
+  </ul>
+</section>
+
+<section class="row section">
+  <h4 class="section-heading">Your Team Members</h4>
+  <ul>
+    <li><a href="">Prashant</a></li>
+    <li><a href="">Nishutosh</a></li>
+  </ul>
+</section>
+
+<section class="row section">
+    <h4 class="section-heading">Download Section</h4>
+    <ul>
+      <li><a href="">Download</a> Status for the last week</li>
+    </ul>
+</section>

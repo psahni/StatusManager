@@ -20,4 +20,8 @@ class Role < ActiveRecord::Base
 
   scope :super_admin, ->{ where(name: 'Super Admin').first rescue nil }
 
+  def self.admin
+    Role.where(name: 'Admin').first
+  end
+  
 end

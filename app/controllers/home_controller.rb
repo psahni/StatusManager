@@ -1,11 +1,11 @@
 class HomeController < ApplicationController
   
   def index
+
   end
 
 
   def time
-
   end
   
   def export_xls
@@ -18,5 +18,12 @@ class HomeController < ApplicationController
       }
     end
   end
-  
+
+
+
+  def dashboard
+    @member = Member.where(name: 'Nishutosh Sharma').first
+    @activities =  PublicActivity::Activity.where(owner_type: 'Member')
+  end
+
 end

@@ -14,7 +14,17 @@
 require 'csv'
 
 class Status < ActiveRecord::Base
-  
+
+  include PublicActivity::Model
+  tracked owner: :member
+
+  belongs_to :member
+
+
+
+
+
+
   def self.import_csv
     statues = CSV.read(Rails.root.to_s + '/db/data/status.csv', :headers => true, :skip_blanks => true)
     return nil if statues.empty?
@@ -31,7 +41,7 @@ class Status < ActiveRecord::Base
         )
       end
     end
-    
+
   end
-  
+
 end

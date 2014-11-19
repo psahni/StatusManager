@@ -16,6 +16,7 @@
 #  soft_delete    :boolean          default(FALSE)
 #  created_at     :datetime
 #  updated_at     :datetime
+#  team_id        :integer
 #
 
 class Member < ActiveRecord::Base
@@ -24,7 +25,7 @@ class Member < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # Validations
-  # validate :name, :presence => true, :uniqueness => true
+  validate :name, :presence => true, :uniqueness => true
   validates :email, presence: true
 
   # Associations

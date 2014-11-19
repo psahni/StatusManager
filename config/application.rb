@@ -20,6 +20,7 @@ module StatusManager
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.time_zone = 'Eastern Time (US & Canada)'
+    config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
   end
   
   require 'core_extensions'

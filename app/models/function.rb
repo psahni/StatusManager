@@ -1,17 +1,14 @@
 # == Schema Information
 #
-# Table name: activities
+# Table name: functions
 #
 #  id          :integer          not null, primary key
 #  name        :string(255)
 #  description :string(255)
-#  active      :boolean          default(TRUE)
+#  active      :boolean
 #  created_at  :datetime
 #  updated_at  :datetime
 #
 
-class Activity < ActiveRecord::Base
-  
-  validates :name, :uniqueness => true, :presence => true
-  
+class Function < ActiveRecord::Base
 end

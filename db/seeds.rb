@@ -6,9 +6,9 @@ Company.where(name: 'Trantor Inc').first_or_create(name: 'Trantor Inc', email: '
   Role.create(:name => role, :active => true)
 end
 
-# Activities
+# Status Function
 ['Code', 'Design', 'Admin', 'Database', 'Unit Test', 'Timebox', 'Meeting', 'Automation', 'Test Design', 'Deployment', 'Documentation', 'Analysis', 'Training'].each do |activity|
-  Activity.create(:name => activity)
+  Function.create(:name => activity)
 end
 
 # Teams
