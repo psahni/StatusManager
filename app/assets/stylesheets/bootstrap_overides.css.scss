@@ -103,6 +103,9 @@ a.outline{
 /* HOME PAGE LAYOUT*/
 #root{
   font-family: source-sans-pro,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  section{
+    width: 100%;
+  }
 }
 
 #root header{
@@ -146,7 +149,7 @@ a.outline{
   background: $digital-ocean;
   width: 100%;
   color: $white;
-  height: 250px;
+  min-height: 250px;
   #claim-container{
     float: none;
     margin: 0;
@@ -155,6 +158,16 @@ a.outline{
      font-size: 40px;
      margin-left: 10%;
      padding-top: 80px;
+     letter-spacing: 1px;
     }
   }
+}
+#text-section div{
+  margin-top: 10px;
+  margin-left: 30%;
+  margin-right: 30%;
+  text-align: center;
+  font-size: 36px;
+  border: 1px solid;
+  padding: 25px;
 }
