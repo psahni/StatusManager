@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
-  
+
+  layout 'root', :only => :index
+
   def index
 
   end
