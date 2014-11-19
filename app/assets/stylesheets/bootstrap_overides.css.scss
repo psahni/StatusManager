@@ -135,8 +135,26 @@ a.outline{
         margin-right: 30px;
         a{
           letter-spacing: 1px;
+          
         }
       }
+    }
+  }
+}
+
+#top-section-homepage{
+  background: $digital-ocean;
+  width: 100%;
+  color: $white;
+  height: 250px;
+  #claim-container{
+    float: none;
+    margin: 0;
+    #claim{
+     font-weight: 300;
+     font-size: 40px;
+     margin-left: 10%;
+     padding-top: 80px;
     }
   }
 }
