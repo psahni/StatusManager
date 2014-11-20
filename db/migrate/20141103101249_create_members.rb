@@ -3,7 +3,7 @@ class CreateMembers < ActiveRecord::Migration
     create_table :members do |t|
       t.integer :role_id
       t.integer :manager_id
-      t.string :name, :null => false
+      t.string :name#, :null => false
       t.string :email, :null => false
       t.string :gender, :limit => 10
       t.date :birthday

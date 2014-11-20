@@ -81,15 +81,6 @@ ActiveRecord::Schema.define(version: 20141117073644) do
     t.datetime "updated_at"
   end
 
-  create_table "settings", force: true do |t|
-    t.string   "alarm_minutes"
-    t.string   "alarm_hours"
-    t.integer  "team_id"
-    t.string   "timezone"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "statuses", force: true do |t|
     t.integer  "member_id"
     t.text     "yesterday_plan"

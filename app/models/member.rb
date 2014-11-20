@@ -20,14 +20,26 @@
 #
 
 class Member < ActiveRecord::Base
-  
-  # Validations
-  validate :name, :presence => true
-  validates_uniqueness_of :name
-  
-  # Associations
-  has_one :role
+  # Include default devise modules. Others available are:
+  # :lockable, :timeoutableand :omniauthable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  belongs_to :team
+  # Validations
+  validate :name, :presence => true, :uniqueness => true
+  validates :email, presence: true
+
+  # Associations
+  has_many :teams_members, class_name: "TeamsMembers"
+  has_many :teams, :through => :teams_members, :dependent => :destroy
+  belongs_to :company
+  belongs_to :role
+
+  after_create :send_invite_to_admin
+  attr_accessor :password_confirmation
+  validates_confirmation_of :password
+
+  def send_invite_to_admin
+     AdminNotificationMailer.welcome_email(self.company, self).deliver! if self.role == Role.super_admin
+  end
 
 end

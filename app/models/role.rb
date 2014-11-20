@@ -14,10 +14,11 @@ class Role < ActiveRecord::Base
   
   # Validations
   validates :name, :uniqueness => true, :presence => true
-  
-  # Associations
-  belongs_to :member
 
+  # Associations
+  has_many :members
+
+  scope :super_admin, ->{ where(name: 'Super Admin').first rescue nil }
 
   def self.admin
     Role.where(name: 'Admin').first

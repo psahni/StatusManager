@@ -33,7 +33,9 @@ end
   'EIS LITE',
   'OUTLOOK AGENTS'
 ].each do |team|
+  Rails.logger.info "Creating seed team : #{team}"
   Team.create(:name => team, :description => team)
+  Rails.logger.info "Created seed team : #{team}"
 end
 
 # Manager
