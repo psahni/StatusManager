@@ -1,19 +1,17 @@
 StatusManager::Application.routes.draw do
-  
-  devise_for :members
 
+  root 'home#index'
+
+  devise_for :members
   devise_scope :member do
     match '/members/confirmation/edit', to: 'devise/confirmations#edit', via: :get, as: :edit_member_confirmation
     match '/members/confirmation', to: 'devise/confirmations#update', via: [:patch, :put], as: :update_member_confirmation
   end
 
-  mount RailsAdmin::Engine => '/status-manager-admin', as: 'rails_admin'
-
-  root 'home#index'
+  mount RailsAdmin::Engine => '/smadmin', as: 'rails_admin'
 
   match '/time' => 'home#time', :via => [:get, :post]
   match '/dashboard' => 'home#dashboard', :via => [:get]
-
   get 'export_xls', :to => 'home#export_xls'
 
   # Example of regular route:

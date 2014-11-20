@@ -22,6 +22,7 @@ gem 'sprockets-rails', '~> 2.1.4'
 group :development do
   gem 'byebug'
   gem 'annotate', '~> 2.6.5'
+  gem 'mailcatcher'
 end
 
 group :test do

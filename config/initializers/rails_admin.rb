@@ -2,6 +2,7 @@ RailsAdmin.config do |config|
 
   ### Popular gems integration
 
+  config.included_models = ["Company", "Function", "Teams", 'Member']
   ## == Devise ==
   # config.authenticate_with do
   #   warden.authenticate! scope: :user
@@ -26,6 +27,13 @@ RailsAdmin.config do |config|
     edit
     delete
     show_in_app
+
+    config.model 'Company' do
+      field :name
+      configure :admin do
+        field :name
+      end
+    end
 
     ## With an audit adapter, you can add:
     # history_index

@@ -23,10 +23,12 @@ class Member < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :lockable, :timeoutableand :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  attr_accessor :password_confirmation
 
   # Validations
   validate :name, :presence => true, :uniqueness => true
   validates :email, presence: true
+  validates_confirmation_of :password
 
   # Associations
   has_many :teams_members, class_name: "TeamsMembers"
@@ -34,12 +36,36 @@ class Member < ActiveRecord::Base
   belongs_to :company
   belongs_to :role
 
+
+  before_validation :assign_random_password, :if => lambda{|obj| obj.role?(Role.super_admin) }
+  before_create :admin_checks
   after_create :send_invite_to_admin
-  attr_accessor :password_confirmation
-  validates_confirmation_of :password
+
 
   def send_invite_to_admin
      AdminNotificationMailer.welcome_email(self.company, self).deliver! if self.role == Role.super_admin
   end
 
+  rails_admin do
+    field :name
+    field :email
+    field :role
+  end
+
+  def assign_random_password
+    random_password = "abrakadabra@12345"
+    self.password = self.password_confirmation = random_password
+  end
+
+  def role?(role)
+    self.role == Role.super_admin
+  end
+
+  def admin_checks
+    if self.role?(Role.super_admin)
+      self.skip_confirmation_notification!
+    else
+      return
+    end
+  end
 end
