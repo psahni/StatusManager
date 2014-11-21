@@ -52,12 +52,15 @@ class Devise::ConfirmationsController < DeviseController
     if resource.errors.empty?
       resource.save
       resource.confirm!
-      redirect_to new_member_session_path, notice: "You've successfully set the password, please login to continue"
+      sign_in resource
+      #redirect_to new_member_session_path, notice: "You've successfully set the password, please login to continue"
     else
       render :edit
     end
 
   end
+
+#-------------------------------------------------------------------------------------------------------------------
 
   protected
 

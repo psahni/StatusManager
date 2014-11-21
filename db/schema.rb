@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20141117073644) do
   create_table "members", force: true do |t|
     t.integer  "role_id"
     t.integer  "manager_id"
-    t.string   "name",                                              null: false
+    t.string   "name"
     t.string   "email",                                             null: false
     t.string   "gender",                 limit: 10
     t.date     "birthday"
@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(version: 20141117073644) do
     t.boolean  "soft_delete",                       default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "team_id"
     t.integer  "company_id"
     t.string   "encrypted_password",                default: "",    null: false
     t.string   "reset_password_token"
@@ -80,6 +79,7 @@ ActiveRecord::Schema.define(version: 20141117073644) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.integer  "team_id"
   end
 
   add_index "members", ["active"], name: "index_members_on_active", using: :btree
@@ -144,7 +144,6 @@ ActiveRecord::Schema.define(version: 20141117073644) do
     t.datetime "updated_at"
   end
 
-  add_index "teams_members", ["member_id"], name: "index_teams_members_on_member_id", using: :btree
-  add_index "teams_members", ["team_id"], name: "index_teams_members_on_team_id", using: :btree
+  add_index "teams_members", ["team_id", "member_id"], name: "index_teams_members_on_team_id_and_member_id", unique: true, using: :btree
 
 end

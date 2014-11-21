@@ -26,12 +26,12 @@ namespace :app do
     #names = ['Mhaider', 'Shashi', 'Kuljeet']
 
     if !Role.admin.blank?
-      Member.create!(name: 'Mhaider', email: 'mhaider@trantorinc.com', role_id: Role.admin.id,
-                    team_id: Team.find_or_create_by(name: 'CANRor').id)
-      Member.create!(name: 'Shashi', email: 'shashi@trantorinc.com', role_id: Role.admin.id,
-                    team_id: Team.find_or_create_by(name: 'Zoltar').id)
-      Member.create!(name: 'Kuljeet', email: 'kuljeet@trantorinc.com', role_id: Role.admin.id,
-                    team_id: Team.find_or_create_by(name: 'DBAs'))
+      Member.create!(name: 'Mhaider', email: 'mhaider@trantorinc.com', role_id: Role.super_admin.id,
+                    team_id: Team.find_or_create_by(name: 'CANRor').id, company_id: Company.default_company.id)
+      Member.create!(name: 'Shashi', email: 'shashi@trantorinc.com', role_id: Role.super_admin.id,
+                    team_id: Team.find_or_create_by(name: 'Zoltar').id,company_id: Company.default_company.id)
+      Member.create!(name: 'Kuljeet', email: 'kuljeet@trantorinc.com', role_id: Role.super_admin.id,
+                    team_id: Team.find_or_create_by(name: 'DBAs'), company_id: Company.default_company.id)
     else
       puts "Please create roles first"
     end

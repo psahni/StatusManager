@@ -32,7 +32,10 @@ StatusManager::Application.configure do
 
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :test
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+
 
 
   # config.action_mailer.smtp_settings = {
@@ -43,5 +46,8 @@ StatusManager::Application.configure do
   #     password:             'Automatic1',
   #     authentication:       'plain',
   #     enable_starttls_auto: true  }
+
+
+  #ref: http://everydayrails.com/2011/05/26/rails-smtp-development.html
 
 end

@@ -32,7 +32,7 @@ div.alert-box {
   text-align: center !important;
 }
 
-.alert-box {
+header{
   border-style: solid;
   border-width: 1px;
   display: block;
@@ -47,8 +47,8 @@ div.alert-box {
   color: $white;
 }
 
-header .alert-box{
-  height: 120px;
+header div{
+  height: 40px;
 }
 .top-links a{
   color: white;
@@ -170,4 +170,11 @@ a.outline{
   font-size: 36px;
   border: 1px solid;
   padding: 25px;
+}
+
+/* alert | flash messages*/
+
+.alert-alert{
+  color: #9A2008;
+  background-color: #F9D299;
 }

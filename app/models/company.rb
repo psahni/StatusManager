@@ -65,5 +65,10 @@ class Company < ActiveRecord::Base
   end
 
 
+  def self.default_company
+    Company.where(name: 'Trantor Inc').first_or_create(name: 'Trantor Inc')
+  end
+
+
 
 end
