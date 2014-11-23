@@ -15,7 +15,7 @@ gem "exception_notification", '~> 4.0.1'
 gem 'rails_admin'
 gem 'devise'
 gem 'spreadsheet'
-
+gem 'rb-readline'
 gem 'autoprefixer-rails' #It is also recommended to use Autoprefixer with Bootstrap to add browser vendor prefixes automatically.
 
 gem 'sprockets-rails', '~> 2.1.4'
@@ -23,6 +23,7 @@ group :development do
   gem 'byebug'
   gem 'annotate', '~> 2.6.5'
   gem 'mailcatcher'
+  gem 'quiet_assets'
 end
 
 group :test do

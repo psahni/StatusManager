@@ -22,7 +22,7 @@ module StatusManager
     config.time_zone = 'Eastern Time (US & Canada)'
     config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
   end
-  
+
   require 'core_extensions'
-  
+
 end
