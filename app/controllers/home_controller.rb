@@ -26,8 +26,6 @@ class HomeController < ApplicationController
     # @member = Member.where(name: 'Nishutosh Sharma').first
     # @activities =  PublicActivity::Activity.where(owner_type: 'Member')
     role = current_member.role
-    logger.info "========"
-    logger.info role.inspect
     case role
         when Role.super_admin
         when Role.admin

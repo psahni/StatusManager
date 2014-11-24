@@ -1,7 +1,13 @@
 <% if member_signed_in? %>
     <div class="pull-right top-links">
         <ul>
-            <li><a href="#">Settings</a></li>
+            <li><a href="#" class="special-link"><%=current_member.name%></a></li>
+            <% if current_member.role?(Role.admin )%>
+                <li><a href="#">Settings</a></li>
+                <li><a href="">Track Status</a></li>
+            <% else %>
+                <li><a href="">Track Your Status</a></li>
+            <% end %>
             <li><a href="#">Logout</a></li>
         </ul>
     </div>

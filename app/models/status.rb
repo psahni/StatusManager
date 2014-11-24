@@ -44,4 +44,9 @@ class Status < ActiveRecord::Base
 
   end
 
+
+  def self.created_for_today?(member)
+    Status.where("member_id = ? AND Date(created_at) = ?", member.id, Date.today).first
+  end
+
 end

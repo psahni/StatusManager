@@ -6,6 +6,16 @@ $black-shaded: #3a3f41;
 $blue-shade: #577491;
 $light-blue: #699;
 $digital-ocean: #3686be;
+$yellow: #ffd500;
+
+
+// font-family
+$source-sans: source-sans-pro,"Helvetica Neue",Helvetica,Arial,sans-serif;
+
+
+html, body {
+  font-size: 100%;
+}
 
 body {
   background: $white;
@@ -20,9 +30,14 @@ body {
   cursor: default;
 }
 
-html, body {
-  font-size: 100%;
+h1, h2, h3, h4, h5{
+  font-family: $source-sans;
 }
+
+h1.heading{
+  letter-spacing: 1.5px;
+}
+
 div.alert-box {
   border-bottom: 1px solid #8bc;
   background: $blue-shade;
@@ -45,10 +60,11 @@ header{
   background-color: #008cba;
   border-color: #0078a0;
   color: $white;
+  font-family: $source-sans;
 }
 
 header div{
-  height: 40px;
+  height: 30px;
 }
 .top-links a{
   color: white;
@@ -79,7 +95,7 @@ header div{
 }
 .section-heading{
   color: $light-blue;
-  font-family: source-sans-pro,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: $source-sans;
   font-size: 18px;
   border-bottom: 2px solid $blue-shade;
 }
@@ -102,7 +118,7 @@ a.outline{
 
 /* HOME PAGE LAYOUT*/
 #root{
-  font-family: source-sans-pro,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: $source-sans;
   section{
     width: 100%;
   }
@@ -191,3 +207,7 @@ a.outline{
   border-color: #d6e9c6;
   color: #468847;
   }
+
+.special-link{
+  color: $yellow !important;
+}

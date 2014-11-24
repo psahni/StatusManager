@@ -57,8 +57,8 @@ class Member < ActiveRecord::Base
     self.password = self.password_confirmation = random_password
   end
 
-  def role?(role)
-    self.role == Role.super_admin
+  def role?(_role)
+    self.role == _role
   end
 
   def admin_checks
