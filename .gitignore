@@ -21,4 +21,3 @@ docs
 public/tmp/
 config/database.yml
 .idea
-Procfile

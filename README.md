@@ -10,6 +10,9 @@ mail:  mailcatcher
 
 ## Access the admin
 - Start your server
+    ``
+        forman start
+    ``
 - go to http://<host>:<port>/smadmin
 
 
