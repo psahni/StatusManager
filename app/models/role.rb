@@ -18,10 +18,10 @@ class Role < ActiveRecord::Base
   # Associations
   has_many :members
 
-  scope :super_admin, ->{ where(name: 'Super Admin').first rescue nil }
+  # Scopes
+  scope :super_admin, ->{ where(name: 'Super Admin').first }
+  scope :admin,       ->{ where(name: 'Admin').first }
+  scope :member,      ->{ where(name: 'Member').first }
 
-  def self.admin
-    Role.where(name: 'Admin').first
-  end
-  
+
 end

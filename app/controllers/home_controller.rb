@@ -3,7 +3,6 @@ class HomeController < ApplicationController
   layout 'root', :only => :index
 
   def index
-
   end
 
 
@@ -24,8 +23,20 @@ class HomeController < ApplicationController
 
 
   def dashboard
-    @member = Member.where(name: 'Nishutosh Sharma').first
-    @activities =  PublicActivity::Activity.where(owner_type: 'Member')
+    # @member = Member.where(name: 'Nishutosh Sharma').first
+    # @activities =  PublicActivity::Activity.where(owner_type: 'Member')
+    role = current_member.role
+    logger.info "========"
+    logger.info role.inspect
+    case role
+        when Role.super_admin
+        when Role.admin
+         @partial_name = 'admin_team'
+        when Role.member
+          @partial_name = 'member_team'
+        else
+         flash[:alert] = "No role has been assigned to you."
+    end
   end
 
 end
