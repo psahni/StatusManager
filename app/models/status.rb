@@ -21,7 +21,8 @@ class Status < ActiveRecord::Base
   belongs_to :member
 
 
-
+  # VALIDATIONS
+  validates :today_plan, :presence => true
 
 
 

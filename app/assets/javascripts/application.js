@@ -13,4 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require angular/angular
+//= require config
+//= require claim
+//= require site.js
+//= require angular-route/angular-route
+//= require angular-resource/angular-resource
+//= require status/services/status
 //= require_tree .
+
+
+

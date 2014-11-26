@@ -1,0 +1,1 @@
+var StatusApp = angular.module("StatusManager", ["ngRoute", "ngResource"]);

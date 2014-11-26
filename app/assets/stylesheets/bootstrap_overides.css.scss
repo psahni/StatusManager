@@ -28,6 +28,7 @@ body {
   line-height: 1;
   position: relative;
   cursor: default;
+  font-size: 14.5px;
 }
 
 h1, h2, h3, h4, h5{
@@ -210,4 +211,8 @@ a.outline{
 
 .special-link{
   color: $yellow !important;
+}
+
+.alert-text{
+  border: 1px solid $blue-shade;
 }
