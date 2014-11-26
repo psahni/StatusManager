@@ -5,23 +5,36 @@
           You have not created your status today
         </div>
         <div class="form-area col-sm-6" ng-controller="CreateCtrl">
-          <%=form_tag '' ,{ class: 'form-horizontal', "ng-submit" => 'submit()' } do %>
-              <div class="field form-group">
+          <!--<%#=form_tag '' ,{ class: 'form-horizontal', "ng-submit" => 'submit()' } do %>-->
+              <!--<div class="field form-group">-->
+                <!--<label for="" class="control-label">What did you do yesterday ?</label>-->
+                <!--<%#=text_area_tag "status[yestarday_plan]", '', class: 'form-control', rows: '5', 'ng-model' => 'status.yestarday_plan'%>-->
+              <!--</div>-->
+              <!--<div class="field form-group">-->
+                <!--<label for="" class="control-label">What is your plan for today ?</label>-->
+                <!--<%#=text_area_tag "status[today_plan]", '', class: 'form-control', cols: '4', rows: '5', 'ng-model' => 'status.today_plan'%>-->
+              <!--</div>-->
+              <!--<div class="field form-group">-->
+                <!--<label for="" class="control-label">What is your plan for tomorrow ?</label>-->
+                <!--<%#=text_area_tag "status[tomorrow_plan]", '', class: 'form-control', cols: '4', rows: '5', 'ng-model' => 'status.tomorrow_plan'%>-->
+              <!--</div>-->
+              <!--<div class="form-group">-->
+                  <!--<button type="submit" class="btn btn-default">Create</button>-->
+              <!--</div>-->
+          <!--<%# end %>-->
+          <form ng-submit="submit();" class="form-horizontal">
+            <div class="field form-group">
                 <label for="" class="control-label">What did you do yesterday ?</label>
-                <%=text_area_tag "status[yestarday_plan]", '', class: 'form-control', rows: '5', 'ng-model' => 'status.yestarday_plan'%>
-              </div>
-              <div class="field form-group">
-                <label for="" class="control-label">What is your plan for today ?</label>
-                <%=text_area_tag "status[today_plan]", '', class: 'form-control', cols: '4', rows: '5', 'ng-model' => 'status.today_plan'%>
-              </div>
-              <div class="field form-group">
-                <label for="" class="control-label">What is your plan for tomorrow ?</label>
-                <%=text_area_tag "status[tomorrow_plan]", '', class: 'form-control', cols: '4', rows: '5', 'ng-model' => 'status.tomorrow_plan'%>
-              </div>
-              <div class="form-group">
-                  <button type="submit" class="btn btn-default">Create</button>
-              </div>
-          <% end %>
+                <textarea name="" id="" rows="5" value="" class="form-control" ng-model="status.yestarday_plan"></textarea>
+            </div>
+            <div class="field form-group">
+              <label for="" class="control-label">What is your plan for today ?</label>
+              <textarea name="" id="" rows="5" value="" class="form-control" ng-model="status.today_plan">''</textarea>
+            </div>
+            <div class="form-group">
+            <button type="submit" class="btn btn-default">Create</button>
+            </div>
+          </form>
         </div>
     <% end %>
 </div>

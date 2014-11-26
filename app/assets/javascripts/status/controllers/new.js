@@ -1,6 +1,6 @@
 StatusApp.controller("CreateCtrl", function($scope, Status){
+    $scope.status = {'today_plan': ''};
     $scope.submit = function(){
-        alert("Submit");
-        return false;
-    }
+        Status.save($scope.status, function(){},function(){})
+   }
 })
