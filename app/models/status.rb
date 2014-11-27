@@ -15,7 +15,9 @@ require 'csv'
 
 class Status < ActiveRecord::Base
 
+  self.primary_key = 'oid'
   include PublicActivity::Model
+  include OidGenerator
   tracked owner: :member
 
   belongs_to :member

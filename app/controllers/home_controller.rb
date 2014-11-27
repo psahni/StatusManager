@@ -2,6 +2,8 @@ class HomeController < ApplicationController
 
   layout 'root', :only => :index
 
+  before_filter :authenticate_member!
+
   def index
   end
 

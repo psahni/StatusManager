@@ -216,3 +216,11 @@ a.outline{
 .alert-text{
   border: 1px solid $blue-shade;
 }
+
+.ng-invalid{
+  border-color: red;
+}
+
+.help-block{
+  color: red;
+}
