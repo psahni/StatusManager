@@ -1,4 +1,4 @@
-StatusApp.controller("CreateCtrl", function($scope, Status){
+StatusApp.controller("CreateCtrl", function($scope, $location,  $route, Status){
     var _responseData = '';
     $scope.status = {'today_plan': ''};
     $scope.submit = function(){
@@ -22,8 +22,12 @@ StatusApp.controller("CreateCtrl", function($scope, Status){
         }
 
 
-    	function onSuccess(){
-    		//$scope.status_created = true;
+    	function onSuccess(response){
+            console.log(response);
+    		$scope.status_created = true;
+            //$location.path(response.next_uri)
+            //$route.reload();
+            window.location.href = (window.location.origin  + response.next_uri);
     	}
 
     	function onError(response){
@@ -37,7 +41,6 @@ StatusApp.controller("CreateCtrl", function($scope, Status){
 
     $scope.errorMessage = function(name){
       var errors = $scope.form[name].$error;
-      console.log(errors);
       var result = [];
    	  angular.forEach(errors, function(value, key){
    	  	result.push(value);

@@ -15,6 +15,7 @@ StatusManager::Application.routes.draw do
 
   match '/time' => 'home#time', :via => [:get, :post]
   match '/dashboard' => 'home#dashboard', :via => [:get], as: :dashboard
+  match '/status/:oid/show' => 'status#show', :via => [:get, :post], as: :status_show
   get 'export_xls', :to => 'home#export_xls'
 
   # Example of regular route:

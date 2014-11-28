@@ -1,0 +1,22 @@
+<div class="template">
+    <div class="col-sm-12">
+        <%=display_flash%>
+        <div class="col-sm-12">
+            <table class="table table-striped">
+              <thead>
+                <th>Yesterday</th>
+                <th>Today</th>
+                <th>Tomorrow</th>
+                <tr>
+                  <td><%=@status.yesterday_plan%></td>
+                  <td><%=@status.today_plan%></td>
+                  <td><%=@status.tomorrow_plan%></td>
+                </tr>
+              </thead>
+            </table>
+          <div class="form-group">
+            <a href='<%=edit_status_path(@status)%>' class="btn btn-default">Edit</a>
+          </div>
+        </div>
+    </div>
+</div>
