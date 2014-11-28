@@ -24,7 +24,7 @@ class Status < ActiveRecord::Base
 
 
   # VALIDATIONS
-  validates :today_plan, :presence => true
+  validates :today_plan, :tomorrow_plan,  :presence => true
 
 
 

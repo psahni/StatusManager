@@ -21,7 +21,7 @@ class StatusController < ApplicationController
   private
 
   def status_params
-    params.require(:status).permit(:today_plan)
+    params.require(:status).permit(:today_plan, :tomorrow_plan)
   end
 end
 
