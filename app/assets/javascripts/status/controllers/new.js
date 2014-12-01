@@ -1,6 +1,7 @@
 StatusApp.controller("CreateCtrl", function($scope, $location,  $route, Status){
     var _responseData = '';
-    $scope.status = {'today_plan': ''};
+    $scope.status = $scope.status || {'today_plan': ''};
+    console.log($scope.status);
     $scope.submit = function(){
     	$scope.form.$setPristine(true);
 
@@ -36,7 +37,10 @@ StatusApp.controller("CreateCtrl", function($scope, $location,  $route, Status){
             setDirty();
     	}
         resetDirty();
-        Status.save($scope.status, onSuccess, onError);
+        if($scope.status.oid){
+           Status.update($scope.status, onSuccess, onError);
+        }else
+            Status.save($scope.status, onSuccess, onError);
    }
 
     $scope.errorMessage = function(name){

@@ -3,6 +3,9 @@ class StatusController < ApplicationController
 
   before_action :authenticate_member!
 
+  respond_to :json, :html
+#-----------------------------------------------------------------------------------------------------
+
   def create
     status = Status.new(status_params)
     if status.save
@@ -13,16 +16,29 @@ class StatusController < ApplicationController
     end
   end
 
+#-----------------------------------------------------------------------------------------------------
+
+
   def edit
     @status = Status.find_by_oid(params[:oid]) or not_found
   end
 
+#-----------------------------------------------------------------------------------------------------
+
+  def update
+    @status = Status.find_by_oid(params[:oid]) or not_found
+    #debugger
+    if @status.update_attributes!(status_params)
+      render json: { oid: @status.oid, next_uri: status_show_path(@status.oid) }
+    else
+      render json: @status, status: :unprocessable_entity
+    end
+  end
+
+#-----------------------------------------------------------------------------------------------------
+
   def show
     @status = Status.find_by_oid(params[:oid]) or not_found
-    respond_to do |format|
-      format.html{
-      }
-    end
   end
 
 #-----------------------------------------------------------------------------------------------------
@@ -32,8 +48,10 @@ class StatusController < ApplicationController
   private
 
   def status_params
-    params.require(:status).permit(:today_plan, :tomorrow_plan, :yesterday_plan)
+    params.require(:status).permit(:today_plan, :tomorrow_plan, :yesterday_plan, :oid)
   end
+
+
 end
 
 

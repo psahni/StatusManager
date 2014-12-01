@@ -15,7 +15,9 @@ require 'csv'
 
 class Status < ActiveRecord::Base
 
+  self.include_root_in_json = false
   self.primary_key = 'oid'
+
   include PublicActivity::Model
   include OidGenerator
   tracked owner: :member
@@ -50,6 +52,11 @@ class Status < ActiveRecord::Base
 
   def self.created_for_today?(member)
     Status.where("member_id = ? AND Date(created_at) = ?", member.id, Date.today).first
+  end
+
+
+  def as_json(options = {})
+    super(:only => [:today_plan, :yesterday_plan, :tomorrow_plan, :oid])
   end
 
 end

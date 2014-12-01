@@ -21,6 +21,9 @@ gem 'foreman'
 gem 'sprockets-rails', '~> 2.1.4'
 gem 'bower-rails'
 
+gem 'debugger'
+gem  'byebug'
+
 group :development do
   gem 'byebug'
   gem 'annotate', '~> 2.6.5'
