@@ -68,4 +68,9 @@ class Member < ActiveRecord::Base
       return
     end
   end
+
+
+  def today_status
+    Status.where("member_id = ? AND Date(created_at) = ?", self.id, Date.today).first
+  end
 end

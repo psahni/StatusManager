@@ -1,2 +1,12 @@
 <%=display_flash%>
-<%=render :partial => "shared_partials/#{ @partial_name }" if @partial_name%>
+
+<div class="template">
+  <% if Status.created_for_today?(current_member)%>
+      <div class="alert alert-success">
+        You have created status for today
+      </div>
+      <a href="<%=edit_status_path(current_member.today_status)%>">Click here to edit your status</a>
+  <% else %>
+      <%=render :partial => "shared_partials/#{ @partial_name }" if @partial_name%>
+    <% end %>
+</div>

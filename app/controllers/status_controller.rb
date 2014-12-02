@@ -7,8 +7,7 @@ class StatusController < ApplicationController
 #-----------------------------------------------------------------------------------------------------
 
   def create
-    status = Status.new(status_params)
-    status.member = current_user
+    status = Status.new(status_params.merge(:member_id => current_member.id))
     if status.save
       flash[:success] = "Status has been created successfully. Your team admin will be notified shortly."
       render json: {oid: status.oid, next_uri: status_show_path(status.oid)}, status: :created, location: status
@@ -28,13 +27,12 @@ class StatusController < ApplicationController
 
   def update
     @status = Status.find_by_oid(params[:oid]) or not_found
-    #debugger
-    if @status.update_attributes!(status_params)
-      render json: { oid: @status.oid, next_uri: status_show_path(@status.oid) }
-    else
-      render json: @status, status: :unprocessable_entity
+      if @status.update_attributes!(status_params)
+        render json: { oid: @status.oid, next_uri: status_show_path(@status.oid) }
+      else
+        render json: @status, status: :unprocessable_entity
+      end
     end
-    endRoot12345
 
 
 #-----------------------------------------------------------------------------------------------------
