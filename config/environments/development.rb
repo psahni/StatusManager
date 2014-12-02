@@ -27,9 +27,9 @@ StatusManager::Application.configure do
   # number of complex assets.
   config.assets.debug = true
   config.log_level = :debug
-  # Mailer configuration
-  config.action_mailer.default_url_options = { :host => "localhost" }
 
+  # Mailer configuration
+  config.action_mailer.default_url_options = { :host => "localhost", :port => 3112 }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
 
@@ -38,16 +38,17 @@ StatusManager::Application.configure do
 
 
 
-  # config.action_mailer.smtp_settings = {
-  #     address:              'smtp.gmail.com',
-  #     port:                 587,
-  #     domain:               'gmail.com',
-  #     user_name:            'meteststatusmanager',
-  #     password:             'Automatic1',
-  #     authentication:       'plain',
-  #     enable_starttls_auto: true  }
+  config.action_mailer.smtp_settings = {
+      address:              'smtp.gmail.com',
+      port:                 587,
+      domain:               'gmail.com',
+      user_name:            'prashant.sahni5',
+      password:             '#Blevel#',
+      authentication:       'plain',
+      enable_starttls_auto: true  }
 
 
   #ref: http://everydayrails.com/2011/05/26/rails-smtp-development.html
+
 
 end

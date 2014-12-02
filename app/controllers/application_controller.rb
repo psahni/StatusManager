@@ -14,6 +14,12 @@ class ApplicationController < ActionController::Base
   end
 
 
+
+  def status_params
+    params.require(:status).permit(:today_plan, :tomorrow_plan, :yesterday_plan, :oid)
+  end
+
+
   def not_found
     respond_to do |format|
       format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }

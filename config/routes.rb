@@ -17,6 +17,8 @@ StatusManager::Application.routes.draw do
   match '/dashboard' => 'home#dashboard', :via => [:get], as: :dashboard
   match '/status/:oid/show' => 'status#show', :via => [:get, :post], as: :status_show
   get 'export_xls', :to => 'home#export_xls'
+  get '/email' => 'home#inline_email'
+  post '/submit_email/:token' => 'home#inline_email_submit', as: :submit_email
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

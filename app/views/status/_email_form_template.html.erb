@@ -1,0 +1,22 @@
+<div class="form-area col-sm-6">
+    <form action="<%=@url%>" method="post" name='form' class="form-horizontal">
+      <div class="field form-group">
+        <label for="">What did you do yestarday?</label><br/>
+        <textarea name="status[yesterday_plan]" id="" cols="50" rows="7"></textarea>
+        <span class='help-block'><%=@status.errors[:yesterday_plan][0] if @status%></span>
+      </div>
+      <div class="field form-group">
+        <label for="">What are you doing today</label><br/>
+        <textarea name="status[today_plan]" id="" cols="50" rows="7"></textarea>
+        <span class='help-block'><%=@status.errors[:today_plan][0] if @status%></span>
+      </div>
+      <div class="field form-group">
+        <label for="">Plan for tommorrow(If Any)</label><br/>
+        <textarea name="status[tomorrow_plan]" id="" cols="50" rows="7"></textarea>
+        <span class='help-block'><%=@status.errors[:tomorrow_plan][0] if @status%></span>
+      </div>
+      <div>
+        <input type="submit" value="Submit"/>
+      </div>
+    </form>
+</div>

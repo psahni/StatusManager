@@ -8,6 +8,7 @@ class StatusController < ApplicationController
 
   def create
     status = Status.new(status_params)
+    status.member = current_user
     if status.save
       flash[:success] = "Status has been created successfully. Your team admin will be notified shortly."
       render json: {oid: status.oid, next_uri: status_show_path(status.oid)}, status: :created, location: status
@@ -33,7 +34,8 @@ class StatusController < ApplicationController
     else
       render json: @status, status: :unprocessable_entity
     end
-  end
+    endRoot12345
+
 
 #-----------------------------------------------------------------------------------------------------
 
@@ -46,10 +48,6 @@ class StatusController < ApplicationController
 
 
   private
-
-  def status_params
-    params.require(:status).permit(:today_plan, :tomorrow_plan, :yesterday_plan, :oid)
-  end
 
 
 end

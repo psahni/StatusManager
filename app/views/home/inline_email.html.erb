@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  <style>
+      .field{
+          width: 100%;
+      }
+  </style>
+</head>
+<body>
+<p>
+<form action="http://localhost:3000/submit_email" method="post">
+  <input name="authenticity_token" type="hidden" value="<%= csrf_meta_token %>" />
+  <div class="field">
+    <label for="">What did you do yestarday?</label><br/>
+    <textarea name="" id="" cols="50" rows="7"></textarea>
+  </div>
+  <div class="field">
+    <label for="">What are you doing today</label><br/>
+    <textarea name="" id="" cols="50" rows="7"></textarea>
+  </div>
+  <div class="field">
+    <label for="">Plan for tommorrow(If Any)</label><br/>
+    <textarea name="" id="" cols="50" rows="7"></textarea>
+  </div>
+  <div>
+    <button>Submit</button>
+  </div>
+
+</form>
+</p>
+<p>Thanks for joining and have a great day!</p>
+</body>
+</html>
