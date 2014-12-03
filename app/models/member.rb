@@ -22,8 +22,14 @@
 class Member < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :lockable, :timeoutableand :omniauthable
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
-  attr_accessor :password_confirmation
+  devise :database_authenticatable,
+         :registerable,
+         :recoverable,
+         :rememberable,
+         :trackable,
+         :validatable,
+         :confirmable
+
 
   # Validations
   validate :name, :presence => true, :uniqueness => true
@@ -37,7 +43,8 @@ class Member < ActiveRecord::Base
   belongs_to :role
 
 
-  before_validation :assign_random_password, :if => lambda{|obj| obj.role?(Role.super_admin) }
+  before_validation :assign_random_password, :if => lambda{|obj| obj.role?(Role.super_admin) },
+                                             :on => :create
   before_create :admin_checks
   after_create :send_invite_to_admin
 
@@ -47,9 +54,11 @@ class Member < ActiveRecord::Base
   end
 
   rails_admin do
-    field :name
+    field :name do
+      label 'Admin Name'
+    end
     field :email
-    field :role, :enum do
+    field :role_id, :enum do
       enum do
         [[Role.super_admin.name, Role.super_admin.id]] rescue []
       end
@@ -61,6 +70,15 @@ class Member < ActiveRecord::Base
   def assign_random_password
     random_password = "abrakadabra@12345"
     self.password = self.password_confirmation = random_password
+  end
+
+  def update_password_with_confirmation(params)
+    Rails.logger.info "--> updating password"
+    self.password = params[:password]
+    self.password_confirmation = params[:password_confirmation]
+    return false if not valid?
+    confirm!
+    save
   end
 
   def role?(_role)

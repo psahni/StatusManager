@@ -21,7 +21,7 @@ class Company < ActiveRecord::Base
 
   # Associations
   has_many :teams
-  has_one :admin, class_name: "Member", inverse_of: :company
+  has_one :admin, class_name: "Member", inverse_of: :company, dependent: :destroy
 
 
   # Callbacks
@@ -33,7 +33,9 @@ class Company < ActiveRecord::Base
 
   #Rails Admin Configuration
   rails_admin do
-    field :name
+    field :name  do
+      label 'Company Name'
+    end
     field :admin
   end
 
