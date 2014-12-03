@@ -1,8 +1,14 @@
 <section class="row section">
   <h4 class="section-heading">Recent Activity</h4>
   <ul>
-    <% @activities.each do |activity| %>
-        <li><%=activity.owner.name%> has updated <a href='#' data-toggle="tooltip" data-placement="right" data-status="<%=activity.trackable.to_json%>" data-html='true'>status</a></li>
+    <% if @activities && @activities.any? %>
+        <% @activities.each do |activity| %>
+            <li><%=activity.owner.name%> has updated <a href='#' data-toggle="tooltip" data-placement="right" data-status="<%=activity.trackable.to_json%>" data-html='true'>status</a></li>
+        <% end %>
+    <% else %>
+       <div class="alert alert-text">
+          There are no activities found of any team member
+       </div>
     <% end %>
   </ul>
 </section>

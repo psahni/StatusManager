@@ -97,4 +97,12 @@ class Member < ActiveRecord::Base
   def today_status
     Status.where("member_id = ? AND Date(created_at) = ?", self.id, Date.today).first
   end
+
+  def super_admin?
+    role == Role.super_admin
+  end
+
+  def member?
+    role == Role.member
+  end
 end

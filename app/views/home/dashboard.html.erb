@@ -1,15 +1,19 @@
 <%=display_flash%>
-
 <div class="template">
-  <% if Status.created_for_today?(current_member)%>
-      <div class="alert alert-success">
-        You have created status for today
-      </div>
-      <a href="<%=edit_status_path(current_member.today_status)%>">Click here to edit your status</a>
-  <% else %>
-      <div class="alert alert-text">
-        You have not created your status for today
-      </div>
-      <%=render :partial => "shared_partials/#{ @partial_name }" if @partial_name%>
+    <% if current_member.super_admin? %>
+        <%=render :partial => "shared_partials/#{ @partial_name }" if @partial_name%>
+    <% elsif current_member.member? %>
+      <% if Status.created_for_today?(current_member)%>
+              <div class="alert alert-success">
+                You have created status for today
+              </div>
+              <a href="<%=edit_status_path(current_member.today_status)%>">Click here to edit your status</a>
+          <% else %>
+              <div class="alert alert-text">
+                You have not created your status for today
+              </div>
+              <%=render :partial => "shared_partials/#{ @partial_name }" if @partial_name%>
+          <% end %>
+        </div>
     <% end %>
 </div>

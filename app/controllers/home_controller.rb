@@ -31,8 +31,7 @@ class HomeController < ApplicationController
     # @activities =  PublicActivity::Activity.where(owner_type: 'Member')
     role = current_member.role
     case role
-        when Role.super_admin
-        when Role.admin
+        when Role.admin, Role.super_admin
          @partial_name = 'admin_team'
         when Role.member
           @partial_name = 'member_team'
