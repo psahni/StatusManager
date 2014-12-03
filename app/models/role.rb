@@ -24,4 +24,5 @@ class Role < ActiveRecord::Base
   scope :member,      ->{ where(name: 'Member').first }
 
 
+
 end

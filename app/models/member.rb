@@ -49,8 +49,14 @@ class Member < ActiveRecord::Base
   rails_admin do
     field :name
     field :email
-    field :role
+    field :role, :enum do
+      enum do
+        [[Role.super_admin.name, Role.super_admin.id]] rescue []
+      end
+    end
   end
+
+
 
   def assign_random_password
     random_password = "abrakadabra@12345"
