@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-ruby 'ruby-2.1.0'
 gem 'rails', '4.1.7'
 gem 'pg'
 gem 'therubyracer', platforms: :ruby
@@ -21,13 +20,13 @@ gem 'autoprefixer-rails' #It is also recommended to use Autoprefixer with Bootst
 gem 'foreman'
 #gem 'sprockets-rails', '~> 2.1.4'
 gem 'bower-rails'
-gem 'debugger'
 
 group :development do
   gem 'byebug'
   gem 'annotate', '~> 2.6.5'
   gem 'mailcatcher'
   gem 'quiet_assets'
+  gem 'debugger'
 end
 
 group :test do
