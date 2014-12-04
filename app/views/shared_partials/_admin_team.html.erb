@@ -15,17 +15,17 @@
 
 <section class="section">
   <h4 class="section-heading">Your Team Members</h4>
-  <ul>
     <% if current_team.members_except_lead.any? %>
-        <% current_team.members_except_lead.each do |member|%>
+      <ul>
+      <% current_team.members_except_lead.each do |member|%>
          <li><a href="#"><%=member.name%></a></li>
         <% end %>
+     </ul>
     <% else %>
-        <div alert alert-text>
+        <div class="alert alert-text">
           No members are added to your team yet
         </div>
-    <% end %>
-  </ul>
+   <% end %>
 </section>
 
 <section class="section">

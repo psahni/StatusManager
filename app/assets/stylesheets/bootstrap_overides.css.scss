@@ -5,6 +5,7 @@ $black: #222;
 $black-shaded: #3a3f41;
 $blue-shade: #577491;
 $light-blue: #699;
+$dark-blue: #152853;
 $digital-ocean: #3686be;
 $yellow: #ffd500;
 
@@ -94,7 +95,7 @@ header div{
   min-height: 200px;
 }
 .section-heading{
-  color: $light-blue;
+  color: $dark-blue;
   font-family: $source-sans;
   font-size: 18px;
   border-bottom: 2px solid $blue-shade;
