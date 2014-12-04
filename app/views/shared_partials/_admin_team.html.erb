@@ -1,27 +1,34 @@
-<section class="row section">
+<section class="section">
   <h4 class="section-heading">Recent Activity</h4>
-  <ul>
     <% if @activities && @activities.any? %>
+      <ul>
         <% @activities.each do |activity| %>
             <li><%=activity.owner.name%> has updated <a href='#' data-toggle="tooltip" data-placement="right" data-status="<%=activity.trackable.to_json%>" data-html='true'>status</a></li>
         <% end %>
+     </ul>
     <% else %>
        <div class="alert alert-text">
           There are no activities found of any team member
        </div>
     <% end %>
-  </ul>
 </section>
 
-<section class="row section">
+<section class="section">
   <h4 class="section-heading">Your Team Members</h4>
   <ul>
-    <li><a href="">Prashant</a></li>
-    <li><a href="">Nishutosh</a></li>
+    <% if current_team.members_except_lead.any? %>
+        <% current_team.members_except_lead.each do |member|%>
+         <li><a href="#"><%=member.name%></a></li>
+        <% end %>
+    <% else %>
+        <div alert alert-text>
+          No members are added to your team yet
+        </div>
+    <% end %>
   </ul>
 </section>
 
-<section class="row section">
+<section class="section">
   <h4 class="section-heading">Download Section</h4>
   <ul>
     <li><a href="">Download</a> Status for the last week</li>

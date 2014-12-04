@@ -1,5 +1,5 @@
 <%=display_flash%>
-<div class="template">
+<div class="template row">
     <% if current_member.super_admin? %>
         <%=render :partial => "shared_partials/#{ @partial_name }" if @partial_name%>
     <% elsif current_member.member? %>

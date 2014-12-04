@@ -4,8 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 
-  def current_user
+  helper_method :current_team
 
+  def current_team
+    @current_team||=current_member.teams.includes(:members).first           # Later on this will moved to dropdown select where a team lead can select the team that we reset to current team
   end
 
 

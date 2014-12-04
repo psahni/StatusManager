@@ -25,4 +25,10 @@ class Team < ActiveRecord::Base
   def self.find_or_create!(team)
     Team.create!(name: team_name)
   end
+
+
+  def members_except_lead
+    self.class.joins(:members).where("members.role_id NOT IN(?)", [Role.super_admin])
+  end
+  
 end
