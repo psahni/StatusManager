@@ -2,7 +2,7 @@ class HomeController < ApplicationController
 
   layout 'root', :only => :index
 
-  before_filter :authenticate_member!, :except => [:inline_email_submit, :inline_email]
+  before_filter :authenticate_member!, :except => [:inline_email_submit, :inline_email, :index]
   skip_before_filter :verify_authenticity_token, :only => [:inline_email_submit]
 
 
