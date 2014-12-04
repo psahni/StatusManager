@@ -18,17 +18,18 @@ gem 'spreadsheet'
 gem 'rb-readline'
 gem 'autoprefixer-rails' #It is also recommended to use Autoprefixer with Bootstrap to add browser vendor prefixes automatically.
 gem 'foreman'
-gem 'sprockets-rails', '~> 2.1.4'
+#gem 'sprockets-rails', '~> 2.1.4'
 gem 'bower-rails'
-
-gem 'debugger'
-gem  'byebug'
 
 group :development do
   gem 'byebug'
   gem 'annotate', '~> 2.6.5'
   gem 'mailcatcher'
   gem 'quiet_assets'
+
+  gem 'debugger'
+  gem  'byebug'
+
 end
 
 group :test do

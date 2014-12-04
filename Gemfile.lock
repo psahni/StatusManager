@@ -265,7 +265,6 @@ DEPENDENCIES
   sass-rails (~> 4.0.0)
   sdoc
   spreadsheet
-  sprockets-rails (~> 2.1.4)
   therubyracer
   uglifier (>= 1.3.0)
   unicorn
