@@ -39,7 +39,7 @@ class Member < ActiveRecord::Base
   # Associations
   has_many :teams_members, class_name: "TeamsMembers"
   has_many :teams, :through => :teams_members, :dependent => :destroy
-  belongs_to :company
+  belongs_to :company, :inverse_of => :members
   belongs_to :role
 
 
@@ -62,6 +62,9 @@ class Member < ActiveRecord::Base
       enum do
         [[Role.super_admin.name, Role.super_admin.id]] rescue []
       end
+    end
+    field :company do
+      inverse_of :admin
     end
   end
 

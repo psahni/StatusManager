@@ -2,7 +2,7 @@ RailsAdmin.config do |config|
 
   ### Popular gems integration
 
-  config.included_models = ["Company", "Function", "Teams", 'Member']
+  config.included_models = ["Company", "Function", "Team", 'Member']
   ## == Devise ==
   # config.authenticate_with do
   #   warden.authenticate! scope: :user

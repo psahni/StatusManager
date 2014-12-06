@@ -22,12 +22,14 @@ class Company < ActiveRecord::Base
   # Associations
   has_many :teams
   has_one :admin, class_name: "Member", inverse_of: :company, dependent: :destroy
+  has_many :members, class_name: "Member", inverse_of: :company
 
 
   # Callbacks
   #after_create :create_admin_of_company
 
   accepts_nested_attributes_for :admin, :allow_destroy => true
+  
 
   #validates :admin, presence: true, inclusion: { in: :admin_enum }
 
