@@ -1,4 +1,4 @@
-<section class="section">
+<section class="section row">
   <h4 class="section-heading">Recent Activity</h4>
     <% if @activities && @activities.any? %>
       <ul>
@@ -13,8 +13,15 @@
     <% end %>
 </section>
 
-<section class="section">
-  <h4 class="section-heading">Your Team Members</h4>
+<section class="section row">
+  <div class='section-heading col-sm-12'>
+    <h4 class="inline pull-left ">
+      Your Team Members
+    </h4>
+    <div class='inline pull-right'>
+      <a href="" class='minibutton primary'>+ Add Team Members</a>
+    </div>
+  </div>
     <% if current_team.members_except_lead.any? %>
       <ul>
       <% current_team.members_except_lead.each do |member|%>
@@ -22,13 +29,13 @@
         <% end %>
      </ul>
     <% else %>
-        <div class="alert alert-text">
-          No members are added to your team yet
-        </div>
+      <div class="alert alert-text col-sm-12">
+        No members are added to your team yet
+      </div>
    <% end %>
 </section>
 
-<section class="section">
+<section class="section row">
   <h4 class="section-heading">Download Section</h4>
   <ul>
     <li><a href="">Download</a> Status for the last week</li>

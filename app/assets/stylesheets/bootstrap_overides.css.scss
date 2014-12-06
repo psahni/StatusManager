@@ -48,6 +48,9 @@ div.alert-box {
   text-align: center !important;
 }
 
+.inline{
+  display: inline;
+}
 header{
   border-style: solid;
   border-width: 1px;
@@ -99,6 +102,13 @@ header div{
   font-family: $source-sans;
   font-size: 18px;
   border-bottom: 2px solid $blue-shade;
+  margin-bottom: 5.5px;
+  h4{
+    margin: 0 0 0 -15px;
+  }
+  a.minibutton{
+    margin-right: -15px;
+  }
 }
 
 .status-tootip .tooltip-inner{
@@ -223,4 +233,48 @@ a.outline{
 
 .help-block{
   color: red;
+}
+
+
+.minibutton {
+  padding: 0 10px;
+  line-height: 17px;
+  margin-bottom: 1px;
+}
+
+
+.button, .minibutton {
+  position: relative;
+  display: inline-block;
+  padding: 4px 5px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #333;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: #eee;
+  background-image: -webkit-linear-gradient(#fcfcfc, #eee);
+  background-image: linear-gradient(#fcfcfc, #eee);
+  background-repeat: repeat-x;
+  border: 1px solid #d5d5d5;
+  border-radius: 3px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-appearance: none;
+}
+
+
+.button.primary, .minibutton.primary {
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+  background-color: $light-blue;
+  background-image: -webkit-linear-gradient($light-blue, $digital-ocean);
+  background-image: linear-gradient($light-blue, $digital-ocean);
+  background-repeat: repeat-x;
+  border-color: $digital-ocean;
+  text-decoration: none;
 }
