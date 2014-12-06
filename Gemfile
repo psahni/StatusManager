@@ -27,6 +27,7 @@ group :development do
   gem 'mailcatcher'
   gem 'quiet_assets'
   gem 'debugger'
+  gem 'unicorn'
 end
 
 group :test do
@@ -34,7 +35,6 @@ group :test do
 end
 
 group :production do
-  gem 'unicorn'
 end
 
 group :doc do
