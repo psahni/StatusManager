@@ -17,7 +17,7 @@ class Team < ActiveRecord::Base
   
   # Associations
   has_many :teams_members, class_name: "TeamsMembers"
-  has_many :members, :through => :teams_members, :dependent => :destroy
+  has_many :members, :through => :teams_members, :dependent => :destroy, :inverse_of => :teams
   belongs_to :company
 
 

@@ -37,8 +37,13 @@ class Member < ActiveRecord::Base
   validates_confirmation_of :password
 
   # Associations
-  has_many :teams_members, class_name: "TeamsMembers"
-  has_many :teams, :through => :teams_members, :dependent => :destroy
+  has_many :teams_members, 
+          class_name: "TeamsMembers"
+  has_many :teams, 
+          :through => :teams_members, 
+          :dependent => :destroy,
+           :inverse_of => :members
+
   belongs_to :company, :inverse_of => :members
   belongs_to :role
 
@@ -65,6 +70,9 @@ class Member < ActiveRecord::Base
     end
     field :company do
       inverse_of :admin
+    end
+    field :teams do
+
     end
   end
 
