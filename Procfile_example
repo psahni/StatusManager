@@ -1,2 +1,2 @@
-web: rails server -p  3112 -u
+web: bundle exec unicorn -d
 mail:  mailcatcher
