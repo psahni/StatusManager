@@ -18,8 +18,8 @@
     <h4 class="inline pull-left ">
       Your Team Members
     </h4>
-    <div class='inline pull-right'>
-      <a href="" class='minibutton primary'>+ Add Team Members</a>
+    <div class='inline pull-right'>      
+      <a class='minibutton primary' data-toggle="modal" href="#Modal" data-target="#Modal">+ Add Team Members</a>
     </div>
   </div>
     <% if current_team.members_except_lead.any? %>
@@ -41,3 +41,5 @@
     <li><a href="">Download</a> Status for the last week</li>
   </ul>
 </section>
+
+<%=render :partial => "members/create_member"%>

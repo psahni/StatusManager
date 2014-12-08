@@ -116,4 +116,14 @@ class Member < ActiveRecord::Base
   def member?
     role == Role.member
   end
+
+#
+#   ABILITIES
+#
+  def can?(action, entity)
+    if super_admin?
+      return true
+    elsif member?    
+    end
+  end
 end

@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
+//= require bootstrap-sass-official/assets/javascripts/bootstrap
 //= require angular/angular
 //= require config
 //= require claim

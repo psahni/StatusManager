@@ -10,7 +10,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 
 gem 'public_activity'
-gem 'bootstrap-sass', '~> 3.0.2.0'
+#gem 'bootstrap-sass', '~> 3.0.2.0'
 gem "exception_notification", '~> 4.0.1'
 gem 'rails_admin'
 gem 'devise'
