@@ -20,6 +20,7 @@
 //= require angular-route/angular-route
 //= require angular-resource/angular-resource
 //= require status/services/status
+//= require members/services/member
 //= require_tree .
 
 

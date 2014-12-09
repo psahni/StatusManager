@@ -10,7 +10,7 @@ StatusManager::Application.routes.draw do
     match '/signup', to: 'devise/registrations#new', via: :get
   end
 
-  resources :members
+  resources :team_members
   
   mount RailsAdmin::Engine => '/smadmin', as: 'rails_admin'
 
