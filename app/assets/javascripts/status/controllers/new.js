@@ -1,7 +1,6 @@
 StatusApp.controller("CreateCtrl", function($scope, $location,  $route, Status){
     var _responseData = '';
     $scope.status = $scope.status || {'today_plan': ''};
-    console.log($scope.status);
     $scope.submit = function(){
     	$scope.form.$setPristine(true);
 
