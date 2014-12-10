@@ -32,8 +32,7 @@ class Member < ActiveRecord::Base
 
 
   # Validations
-  validate :name, :presence => true, :uniqueness => true
-  validates :email, presence: true
+  validates :name, :presence => true, :uniqueness => true
   validates_confirmation_of :password
 
   # Associations
@@ -48,8 +47,8 @@ class Member < ActiveRecord::Base
   belongs_to :role
 
 
-  before_validation :assign_random_password, :if => lambda{|obj| obj.role?(Role.super_admin) },
-                                             :on => :create
+  before_validation :assign_random_password,  :on => :create
+
   before_create :admin_checks
   after_create :send_invite_to_admin
 

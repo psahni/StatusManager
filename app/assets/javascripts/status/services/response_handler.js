@@ -1,11 +1,11 @@
 'use strict';
 StatusApp.service('ResponseHandler', function(){
 
-    this.setDirty = function(responseData){
+    this.setDirty = function(form, responseData){
         angular.forEach(responseData, function(value, key){
-            $scope.form[key].$dirty = true;
-            $scope.form[key].$error = value;
-            $scope.form[key].$setValidity(key, false);
+            form[key].$dirty = true;
+            form[key].$error = value;
+            form[key].$setValidity(key, false);
         });
     }
 
@@ -19,11 +19,19 @@ StatusApp.service('ResponseHandler', function(){
         });
     }
 
-    this.OnSuccess = function(){
-
+    this.OnSuccess = function(success){
+        success.call();
     }
 
-    this.OnError = function(){
+    this.OnError = function(form, errors){
+        this.setDirty(form, errors);
+    }
 
+    this.displayError = function(errors){
+        var result = [];
+        angular.forEach(errors, function(value, key){
+            result.push(value);
+        });
+        return result.join(", ");
     }
 });

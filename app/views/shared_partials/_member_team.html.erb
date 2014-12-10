@@ -7,10 +7,9 @@
     <div class="field form-group">
       <label for="" class="control-label">What is your plan for today ?</label>
       <textarea name="today_plan" id="" rows="5" value="" class="form-control" ng-model="status.today_plan"></textarea>
-                 <span class='help-block'
-                       ng-show="form.today_plan.$invalid && form.today_plan.$dirty">
-                      {{errorMessage('today_plan')}}
-                </span>
+         <span class='help-block' ng-show="form.today_plan.$invalid && form.today_plan.$dirty">
+              {{errorMessage('today_plan')}}
+        </span>
     </div>
     <div class="field form-group">
       <label for="" class="control-label">What is your plan for tomorrow ?</label>
