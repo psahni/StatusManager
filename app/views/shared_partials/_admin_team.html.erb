@@ -22,17 +22,20 @@
       <a class='minibutton primary' data-toggle="modal" href="#Modal" data-target="#Modal">+ Add Team Members</a>
     </div>
   </div>
-    <% if current_team.members_except_lead.any? %>
+  <div ng-controller="MembersCtrl">
+    <%=render :partial => "members/create_member"%>
+    <div ng-show="team_members.length > 0">
       <ul>
-      <% current_team.members_except_lead.each do |member|%>
-         <li><a href="#"><%=member.name%></a></li>
-        <% end %>
-     </ul>
-    <% else %>
-      <div class="alert alert-text col-sm-12">
-        No members are added to your team yet
-      </div>
-   <% end %>
+        <li ng-repeat="mmmmber in team_members">
+          <a href="#">{{mmmmber.name}}</a>
+        </li>
+      </ul>
+    </div>
+    <div ng-show="team_members.length==0" class="alert alert-text col-sm-12">
+      No members are added to your team yet
+    </div>
+  </div>
+   <div ng-init="team_members = <%=current_team.members_except_lead.to_json%>"></div>
 </section>
 
 <section class="section row">
@@ -42,4 +45,3 @@
   </ul>
 </section>
 
-<%=render :partial => "members/create_member"%>
