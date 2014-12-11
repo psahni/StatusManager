@@ -18,15 +18,21 @@ class Devise::ConfirmationsController < DeviseController
 
   # GET /resource/confirmation?confirmation_token=abcdef
   def show
-    self.resource = resource_class.confirm_by_token(params[:confirmation_token])
-    yield resource if block_given?
-
-    if resource.errors.empty?
-      set_flash_message(:notice, :confirmed) if is_flashing_format?
-      respond_with_navigational(resource){ redirect_to after_confirmation_path_for(resource_name, resource) }
-    else
-      respond_with_navigational(resource.errors, status: :unprocessable_entity){ render :new }
-    end
+    self.resource, original_token = resource_class.find_original_token(params[:confirmation_token])
+    logger.info "======================="
+    logger.info self.resource.inspect
+    logger.info original_token.inspect
+    logger.info "======================="
+    return render :text => "Invalid Token" if self.resource.blank?
+    redirect_to edit_member_confirmation_path(confirmation_token: original_token) and return
+    # yield resource if block_given?
+    #
+    # if resource.errors.empty?
+    #   set_flash_message(:notice, :confirmed) if is_flashing_format?
+    #   respond_with_navigational(resource){ redirect_to after_confirmation_path_for(resource_name, resource) }
+    # else
+    #   respond_with_navigational(resource.errors, status: :unprocessable_entity){ render :new }
+    # end
   end
 
   # GET /resource/edit

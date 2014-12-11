@@ -22,20 +22,21 @@
       <a class='minibutton primary' data-toggle="modal" href="#Modal" data-target="#Modal">+ Add Team Members</a>
     </div>
   </div>
-  <div ng-controller="MembersCtrl">
-    <%=render :partial => "members/create_member"%>
-    <div ng-show="team_members.length > 0">
-      <ul>
-        <li ng-repeat="mmmmber in team_members">
-          <a href="#">{{mmmmber.name}}</a>
-        </li>
-      </ul>
-    </div>
+  <div ng-init="team_members = <%=current_team.members_except_lead.to_json%>"></div>
+
+  <div ng-controller="MembersCtrl" class="col-sm-12">
     <div ng-show="team_members.length==0" class="alert alert-text col-sm-12">
       No members are added to your team yet
     </div>
+    <%=render :partial => "members/create_member"%>
+    <div ng-show="team_members.length > 0">
+      <ul class="list-inline team-members-list">
+        <li ng-repeat="m in team_members" class="col-sm-3">
+          <a href="#" title='{{m.email}}' ng-click="goToProfile(m)">{{m.name}}</a>
+        </li>
+      </ul>
+    </div>
   </div>
-   <div ng-init="team_members = <%=current_team.members_except_lead.to_json%>"></div>
 </section>
 
 <section class="section row">

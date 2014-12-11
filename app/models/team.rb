@@ -28,7 +28,7 @@ class Team < ActiveRecord::Base
 
 
   def members_except_lead
-    self.class.joins(:members).where("members.role_id NOT IN(?)", [Role.super_admin])
+    members.where("members.role_id NOT IN (?)", [Role.super_admin])
   end
 
 end

@@ -50,8 +50,11 @@ class Member < ActiveRecord::Base
   before_validation :assign_random_password,  :on => :create
 
   before_create :admin_checks
-  after_create :send_invite_to_admin
+  after_create  :send_invite_to_admin
+  after_create  :create_team_member
 
+
+  attr_accessor :current_team_id
 
   def send_invite_to_admin
      AdminNotificationMailer.welcome_email(self.company, self).deliver! if self.role == Role.super_admin
@@ -116,13 +119,28 @@ class Member < ActiveRecord::Base
     role == Role.member
   end
 
+  def create_team_member
+    TeamsMembers.create!(member_id: self.id, team_id: current_team_id)
+  end
+
+
+  ##
+  ## DEVISE OVERRIDES
+
+
+  def self.find_original_token(token)
+    confirmation_token = Devise.token_generator.digest(self, :confirmation_token, token)
+    member = self.find_by_confirmation_token(confirmation_token)
+    return [member, confirmation_token]
+  end
+
 #
 #   ABILITIES
 #
-  def can?(action, entity)
-    if super_admin?
-      return true
-    elsif member?    
-    end
-  end
+  # def can?(action, entity)
+  #   if super_admin?
+  #     return true
+  #   elsif member?
+  #   end
+  # end
 end
