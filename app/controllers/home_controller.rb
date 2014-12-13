@@ -28,7 +28,7 @@ class HomeController < ApplicationController
 
   def dashboard
     # @member = Member.where(name: 'Nishutosh Sharma').first
-    # @activities =  PublicActivity::Activity.where(owner_type: 'Member')
+    @activities =  current_team.activity_history
     role = current_member.role
     case role
         when Role.admin, Role.super_admin

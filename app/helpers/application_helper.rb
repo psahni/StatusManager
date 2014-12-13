@@ -3,7 +3,7 @@ module ApplicationHelper
   def display_flash
     message = ''
     flash.each do |key, value|
-      message+= "<div class='alert alert-#{key}'>"
+      message+= "<div class='alert alert-#{key}' timeout>"
       message+='<a href="#" data-dismiss="alert" class="close">×</a>'
       message+=value
       message+='</div>'

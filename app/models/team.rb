@@ -31,4 +31,8 @@ class Team < ActiveRecord::Base
     members.where("members.role_id NOT IN (?)", [Role.super_admin])
   end
 
+  def activity_history
+    PublicActivity::Activity.where("owner_type = ? AND owner_id in (?)", 'Member', members_except_lead.collect(&:id))
+  end
+
 end

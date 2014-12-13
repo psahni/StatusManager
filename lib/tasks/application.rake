@@ -2,7 +2,7 @@ namespace :app do
 
   desc "Add roles to database"
   task add_roles: :environment do
-    ['Admin', 'SuperAdmin', 'Member'].each do |role|
+    ['Admin', 'SuperAdmin', 'Member', 'Manager'].each do |role|
       puts "Adding #{ role }"
       Role.create!(name: role)
     end
