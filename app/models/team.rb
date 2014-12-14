@@ -28,7 +28,7 @@ class Team < ActiveRecord::Base
 
 
   def members_except_lead
-    members.where("members.role_id NOT IN (?)", [Role.super_admin])
+    @members||=members.where("members.role_id NOT IN (?)", [Role.super_admin])
   end
 
   def activity_history
