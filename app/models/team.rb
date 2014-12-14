@@ -20,6 +20,7 @@ class Team < ActiveRecord::Base
   has_many :members, :through => :teams_members, :dependent => :destroy, :inverse_of => :teams
   belongs_to :company
 
+  has_one :setting, class_name: 'Settings'
 
 
   def self.find_or_create!(team)

@@ -2,8 +2,8 @@
     <div class="pull-right top-links">
         <ul>
             <li><a href="#" class="special-link"><%=current_member.name%></a></li>
-            <% if current_member.role?(Role.admin )%>
-                <li><a href="#">Settings</a></li>
+            <% if current_member.super_admin? or current_member.admin? %>
+                <li><%=link_to "Settings", settings_path%></li>
                 <li><a href="">Track Status</a></li>
             <% else %>
                 <li><a href="">Track Your Status</a></li>

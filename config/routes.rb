@@ -14,7 +14,7 @@ StatusManager::Application.routes.draw do
 
 
   resources :team_members
-  
+  resources :settings  
   mount RailsAdmin::Engine => '/smadmin', as: 'rails_admin'
 
   resources :status, param: :oid
