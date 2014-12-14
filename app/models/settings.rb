@@ -16,6 +16,10 @@ class Settings < ActiveRecord::Base
   belongs_to :team
 
 
+  validates :timezone, presence: :true
+  validates :alarm_minutes, presence: :true
+  validates :alarm_minutes, presence: :true
+
   def get_time(zone)
     ActiveSupport::TimeZone.find_tzinfo(zone).now
   end
