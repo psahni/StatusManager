@@ -2,12 +2,13 @@ class StatusController < ApplicationController
 
 
   before_action :authenticate_member!
-
+  before_filter :allow_email_form_submit, :only => [:create, :update]
   respond_to :json, :html
 #-----------------------------------------------------------------------------------------------------
 
   def create
-    status = Status.new(status_params.merge(:member_id => current_member.id))
+    logger.info "user is #{status_user}"
+    status = Status.new(status_params.merge(:member_id => status_user.id))
     if status.save
       flash[:success] = "Status has been created successfully. Your team admin will be notified shortly."
       render json: {oid: status.oid, next_uri: status_show_path(status.oid)}, status: :created, location: status
@@ -47,7 +48,15 @@ class StatusController < ApplicationController
 
   private
 
-
+  def status_user
+    if logged_in?
+      return current_member
+    else
+        member = Member.where(standup_email_token: params[:token]).first
+        return render :text => "<h1>Invalid Request.</h1>"   unless member
+        return member
+    end
+  end
 end
 
 

@@ -49,10 +49,11 @@ class Member < ActiveRecord::Base
 
   before_validation :assign_random_password,  :on => :create
 
-  before_create :admin_checks
-  after_create  :send_invite_to_admin
-  after_create  :create_team_member
-
+  before_create  :add_standup_token
+  before_create  :admin_checks
+  after_create   :send_invite_to_admin
+  after_create   :create_team_member
+  
 
   attr_accessor :current_team_id
 
@@ -123,6 +124,13 @@ class Member < ActiveRecord::Base
     TeamsMembers.create!(member_id: self.id, team_id: current_team_id)
   end
 
+  def add_standup_token
+    self.standup_email_token = Devise.friendly_token
+  end
+
+  def send_standup_email
+    Notification.standup_notify(self).deliver
+  end
 
   ##
   ## DEVISE OVERRIDES

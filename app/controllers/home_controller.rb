@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 
   before_filter :authenticate_member!, :except => [:inline_email_submit, :inline_email, :index, :job_test]
   skip_before_filter :verify_authenticity_token, :only => [:inline_email_submit]
-
+  before_filter :allow_email_form_submission, :only => [:inline_email_submit]
 
   def index    
   end
@@ -47,22 +47,20 @@ class HomeController < ApplicationController
   end
 
   def inline_email_submit
-    token = 'tfgh4567wsed'
-    if params[:token] == token
-      @status = Status.new(status_params)
-      if not @status.valid?
+    token = params[:token]
+    @member = Member.where(standup_email_token: token).first
+    if @member
+      @status = Status.new(status_params.merge(member_id: @member.id))
+      unless @status.valid?
         @url = submit_email_url(token)
         render :template => 'status/_email_form_template.html.erb'
       else
-        @status.save
+        @status.save  
         render :text => "<h1>Thank you for submission</h1>"
       end
     else
-      render :text => "<h1>Invalid Token</h1>"
+      render :text => "<h1>Invalid Request</h1>"
     end
   end
 
-  def job_test
-    logger.info "=========Test==========="
-  end
 end

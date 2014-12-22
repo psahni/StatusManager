@@ -27,16 +27,24 @@ class Settings < ActiveRecord::Base
     ActiveSupport::TimeZone.find_tzinfo(zone).now
   end
 
+  def trigger_standup_notify
+     Rails.logger.info "=========================="
+     Rails.logger.info self.inspect
+     self.team.members_except_lead.each do |m|
+      m.send_standup_email
+     end
+     Rails.logger.info "=========================="
+  end
+
 
   def schedule_job
     @id = self.id
-    self.job_id = schedular.cron "#{ self.alarm_minutes } #{ self.alarm_hours } * * 1-5 Asia/Calcutta" do
-     Rails.logger.info "=================================="
-     Rails.logger.info " @id #{ @id }"
+    Rails.logger.info "--> Scheduling job for #{self.team.name}"
+    self.job_id = schedular.cron "#{ self.alarm_minutes } #{ self.alarm_hours } * * 1-5 Asia/Calcutta" do     
      setting = Settings.find(@id)
-     Rails.logger.info setting.inspect
-     Rails.logger.info "=================================="
+     setting.trigger_standup_notify()   
     end
+    Rails.logger.info "--> Job scheduled. Job Id = #{ job_id }"
     save
   end
 
@@ -48,18 +56,17 @@ class Settings < ActiveRecord::Base
     end
     job = schedular.job(self.job_id)
     if job 
-      Rails.logger.info "--> Unscheduling JOB ID"
+      Rails.logger.info "--> Unscheduling JOB ID for setting id #{self.id}"
       Rails.logger.info job_id.inspect
       job.unschedule
     end
+    Rails.logger.info "--> Updating JOB for setting id #{ self.id }"
     @id = self.id
-    self.job_id = schedular.cron "#{ self.alarm_minutes } #{ self.alarm_hours } * * 1-5 Asia/Calcutta" do
-     Rails.logger.info "=================================="
-     Rails.logger.info " @id #{ @id }"
+    self.job_id = schedular.cron "#{ self.alarm_minutes } #{ self.alarm_hours } * * 1-5 Asia/Calcutta" do     
      setting = Settings.find(@id)
-     Rails.logger.info setting.inspect
-     Rails.logger.info "=================================="
+     setting.trigger_standup_notify()     
     end
   end
+
 
 end

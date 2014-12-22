@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_team
 
+
   def current_team
     @current_team||=current_member.teams.includes(:members).first           # Later on this will moved to dropdown select where a team lead can select the team that we reset to current team
   end
@@ -21,6 +22,11 @@ class ApplicationController < ActionController::Base
     params.require(:status).permit(:today_plan, :tomorrow_plan, :yesterday_plan, :oid)
   end
 
+  def allow_email_form_submission
+    if Rails.env.development?
+      response.headers["X-Frame-Options"] = "http://localhost:1050"
+    end
+  end
 
   def not_found
     respond_to do |format|
