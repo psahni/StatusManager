@@ -30,12 +30,12 @@ group :development do
   gem 'unicorn'
 end
 
+gem 'rufus-scheduler'
+
 group :test do
   gem 'rspec-rails'
 end
 
-group :production do
-end
 
 group :doc do
   gem 'sdoc', require: false

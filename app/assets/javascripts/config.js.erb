@@ -1,8 +1,8 @@
 var StatusApp = angular.module("StatusManager", ["ngRoute", "ngResource"]);
 
 StatusApp.config(["$routeProvider", "$locationProvider", "$httpProvider", function($routeProvider, $locationProvider, $httpProvider) {
-    $locationProvider.html5Mode(true);
-    $routeProvider.when('/dashboard', {templateUrl: '<%=asset_path('status/show.html')%>', controller: 'show'})
+    //$locationProvider.html5Mode(true);
+    //$routeProvider.when('/dashboard', {templateUrl: '<%=asset_path('status/show.html')%>', controller: 'show'})
     $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
     $httpProvider.defaults.headers.post["Content-Type"] = "application/json";
 }]);

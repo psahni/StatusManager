@@ -1,7 +1,8 @@
 class SettingsController < ApplicationController
 
 	def index
-		@setting = current_team.setting || current_team.build_setting		
+		@setting = current_team.setting || current_team.build_setting	
+		Rails.logger.info schedular.cron_jobs	
 	end
 
 #----------------------------------------------------------------------------------------------------------

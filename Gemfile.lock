@@ -181,6 +181,8 @@ GEM
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
     ruby-ole (1.2.11.7)
+    rufus-scheduler (3.0.9)
+      tzinfo
     safe_yaml (1.0.4)
     sass (3.2.19)
     sass-rails (4.0.5)
@@ -257,6 +259,7 @@ DEPENDENCIES
   rails_admin
   rb-readline
   rspec-rails
+  rufus-scheduler
   sass-rails (~> 4.0.0)
   sdoc
   spreadsheet

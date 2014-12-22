@@ -25,6 +25,7 @@ StatusManager::Application.routes.draw do
   get 'export_xls', :to => 'home#export_xls'
   get '/email' => 'home#inline_email'
   post '/submit_email/:token' => 'home#inline_email_submit', as: :submit_email
+  match 'jobs' => 'home#job_test', via: :get
 
   
 end
