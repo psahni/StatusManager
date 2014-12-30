@@ -28,6 +28,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_site_admin
+    logger.info "**always calling**"
+    http_basic_authenticate_with name: "dhh", password: "secret", except: :index
+  end
+
   def not_found
     respond_to do |format|
       format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }

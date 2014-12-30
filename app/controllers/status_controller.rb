@@ -52,9 +52,9 @@ class StatusController < ApplicationController
     if member_signed_in?
       return current_member
     else
-        member = Member.where(standup_email_token: params[:token]).first
-        return render :text => "<h1>Invalid Request.</h1>"   unless member
-        return member
+      member = Member.where(standup_email_token: params[:token]).first
+      return render :text => "<h1>Invalid Request.</h1>"   unless member
+      return member
     end
   end
 end

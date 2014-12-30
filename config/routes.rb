@@ -4,7 +4,6 @@ StatusManager::Application.routes.draw do
 
 
   devise_for :members
-
   devise_scope :member do
     match '/members/confirmation/edit', to: 'devise/confirmations#edit', via: :get, as: :edit_member_confirmation
     match '/members/confirmation', to: 'devise/confirmations#update', via: [:patch, :put], as: :update_member_confirmation

@@ -39,4 +39,23 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  # require "rails_admin/application_controller"
+  #
+  # module RailsAdmin
+  #   class ApplicationController < ::ApplicationController
+  #     before_filter :require_site_admin
+  #     include ActionController::HttpAuthentication
+  #
+  #   end
+  # end
+
+  config.authorize_with do
+    authenticate_or_request_with_http_basic('Login required') do |username, password|
+      Rails.logger.info "******always calling************"
+      username == 'smadmin' &&
+      password == 'password69'
+    end
+  end
+
 end
