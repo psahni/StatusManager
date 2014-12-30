@@ -2,7 +2,7 @@ class StatusController < ApplicationController
 
 
   before_action :authenticate_member!
-  before_filter :allow_email_form_submit, :only => [:create, :update]
+  before_filter :allow_email_form_submission, :only => [:create, :update]
   respond_to :json, :html
 #-----------------------------------------------------------------------------------------------------
 
@@ -49,7 +49,7 @@ class StatusController < ApplicationController
   private
 
   def status_user
-    if logged_in?
+    if member_signed_in?
       return current_member
     else
         member = Member.where(standup_email_token: params[:token]).first

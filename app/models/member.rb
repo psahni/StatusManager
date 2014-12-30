@@ -116,6 +116,10 @@ class Member < ActiveRecord::Base
     role == Role.super_admin
   end
 
+  def admin?
+    role == Role.admin
+  end
+
   def member?
     role == Role.member
   end

@@ -5,9 +5,9 @@
       </h4>
     </div>
     <% if @activities && @activities.any? %>
-      <ul>
+      <ul class="pull-left">
         <% @activities.each do |activity| %>
-            <li><%=activity.owner.name%> has updated <a href='#' data-toggle="tooltip" data-placement="right" data-status="<%=activity.trackable.to_json%>" data-html='true'>status</a></li>
+            <li class="activity-line"><%=activity.owner.name%> has updated <a href='#' data-toggle="tooltip" data-placement="right" data-status="<%=activity.trackable.to_json%>" data-html='true'>status</a></li>
         <% end %>
      </ul>
     <% else %>
