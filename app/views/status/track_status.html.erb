@@ -1,17 +1,20 @@
-<div class="template">
-  <div class="col-sm-12">
-    <table class="table table-striped">
-      <thead>
-        <th>Date</th>
-        <th>Status</th>
-      </thead>
-      <% current_member.statuses.each do |status| %>
-      <tr>
-        <td><%=status.created_at.strftime("%v")%></td>
-        <td><%=status.today_plan%><input type="text" style='display:none;' value="<%=status.today_plan%>" disabled="disabled"/></td>
-        <td><a class='editable' href="<%=edit_status_path(status)%>">Edit</a></td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
+<!--<div class="template">-->
+  <!--<div class="col-sm-12">-->
+    <!--<table class="table table-striped">-->
+      <!--<thead>-->
+        <!--<th>Date</th>-->
+        <!--<th>Status</th>-->
+      <!--</thead>-->
+      <!--<% current_member.statuses.order("created_at DESC").each do |status| %>-->
+      <!--<tr>-->
+        <!--<td><%=status.created_at.strftime("%v")%></td>-->
+        <!--<td><%=status.today_plan%><input type="text" style='display:none;' value="<%=status.today_plan%>" disabled="disabled"/></td>-->
+        <!--<td><a class='editable' href="<%=edit_status_path(status)%>">Edit</a></td>-->
+      <!--</tr>-->
+      <!--<% end %>-->
+    <!--</table>-->
+  <!--</div>-->
+<!--</div>-->
+
+
+<div ui-calendar ng-model="eventSources"></div>
