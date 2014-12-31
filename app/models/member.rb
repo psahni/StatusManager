@@ -43,6 +43,7 @@ class Member < ActiveRecord::Base
           :dependent => :destroy,
            :inverse_of => :members
 
+  has_many :statuses
   belongs_to :company, :inverse_of => :members
   belongs_to :role
 

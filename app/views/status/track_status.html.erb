@@ -1,0 +1,17 @@
+<div class="template">
+  <div class="col-sm-12">
+    <table class="table table-striped">
+      <thead>
+        <th>Date</th>
+        <th>Status</th>
+      </thead>
+      <% current_member.statuses.each do |status| %>
+      <tr>
+        <td><%=status.created_at.strftime("%v")%></td>
+        <td><%=status.today_plan%></td>
+        <td><a href="">Edit</a></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

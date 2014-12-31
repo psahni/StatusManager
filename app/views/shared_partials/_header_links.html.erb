@@ -6,7 +6,7 @@
                 <li><%=link_to "Settings", settings_path%></li>
                 <li><a href="">Track Status</a></li>
             <% else %>
-                <li><a href="">Track Your Status</a></li>
+                <li><%=link_to "Track your status", track_status_status_index_path%></li>
             <% end %>
             <li><a href="#">Logout</a></li>
         </ul>

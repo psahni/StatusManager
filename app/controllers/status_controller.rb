@@ -7,7 +7,6 @@ class StatusController < ApplicationController
 #-----------------------------------------------------------------------------------------------------
 
   def create
-    logger.info "user is #{status_user}"
     status = Status.new(status_params.merge(:member_id => status_user.id))
     if status.save
       flash[:success] = "Status has been created successfully. Your team admin will be notified shortly."
@@ -44,6 +43,9 @@ class StatusController < ApplicationController
 
 #-----------------------------------------------------------------------------------------------------
 
+  def track_status
+
+  end
 
 
   private

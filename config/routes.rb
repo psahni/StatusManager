@@ -16,7 +16,12 @@ StatusManager::Application.routes.draw do
   resources :settings  
   mount RailsAdmin::Engine => '/smadmin', as: 'rails_admin'
 
-  resources :status, param: :oid
+  # pass oid as param
+  resources :status, param: :oid do
+    collection do
+      get :track_status
+    end
+  end
 
   match '/time' => 'home#time', :via => [:get, :post]
   match '/dashboard' => 'home#dashboard', :via => [:get], as: :dashboard
