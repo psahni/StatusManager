@@ -30,23 +30,14 @@ class Status < ActiveRecord::Base
 
 
 
-  def self.import_csv
-    statues = CSV.read(Rails.root.to_s + '/db/data/status.csv', :headers => true, :skip_blanks => true)
-    return nil if statues.empty?
-    statues.each do |status|
-      # Get Member
-      member = Member.find_by_name(status['Member Name'])
-      
-      if member
-        Status.create(
-          member_id: member.id,
-          yesterday_plan: status['Yesterday'],
-          today_plan: status['Today'],
-          tomorrow_plan: status['Tomorrow']
-        )
+  def self.to_csv(member, duration)
+    statuses = member.statuses.where("created_at > ?", duration.days.ago)
+    FileUtils.mkdir("csvs") unless File.exists?("csvs")
+    statuses.each do |status|
+      File.open("#{Rails.root}/csvs/#{ member.parametrize }.csv", "w") do |file|
+        file.write("#{status.created_at.strftime("%v")}  #{status.today_plan}")
       end
     end
-
   end
 
 

@@ -108,6 +108,9 @@ class Member < ActiveRecord::Base
     end
   end
 
+  def parametrize
+    [self.name, self.id].join("-").gsub(" ", "-")
+  end
 
   def today_status
     Status.where("member_id = ? AND Date(created_at) = ?", self.id, Date.today).first
