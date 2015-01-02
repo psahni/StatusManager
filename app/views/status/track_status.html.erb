@@ -1,3 +1,5 @@
+<%=javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.js"%>
+<%=stylesheet_link_tag "//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.5/fullcalendar.min.css"%>
 <!--<div class="template">-->
   <!--<div class="col-sm-12">-->
     <!--<table class="table table-striped">-->
@@ -16,5 +18,39 @@
   <!--</div>-->
 <!--</div>-->
 
+<div id="calendar">
+</div>
 
-<div ui-calendar ng-model="eventSources"></div>
+<script>
+
+  function parseDate(created_at){
+    var date = (new Date(Date.parse(created_at)));
+    return [String(date.getFullYear()), String(date.getMonth() +1), String(date.getDate())].join("-");
+  }
+  $("#calendar").fullCalendar({
+      events: function(start, end, timezone, callback) {
+          $.ajax({
+              url: '/getStatus?user_id=<%=current_member.id%>',
+              dataType: 'json',
+              data: {
+                  // our hypothetical feed requires UNIX timestamps
+                  start: start.unix(),
+                  end: end.unix()
+              },
+              success: function(docs) {
+                  var events = [];
+                  $(docs).each(function(index, doc) {
+                      events.push({
+                          title: doc.today_plan,
+                          start: parseDate(doc.created_at)
+                      });
+                  });
+                  callback(events);
+              }
+          });
+      },
+      eventRender: function(event, element) {
+          $(element).find(".fc-time").remove();
+      }
+  })
+</script>

@@ -12,7 +12,12 @@ StatusManager::Application.routes.draw do
   end
 
 
-  resources :team_members
+  resources :team_members do
+    member do
+      get :getStatus
+    end
+  end
+
   resources :settings  
   mount RailsAdmin::Engine => '/smadmin', as: 'rails_admin'
 
@@ -30,6 +35,6 @@ StatusManager::Application.routes.draw do
   get '/email' => 'home#inline_email'
   post '/submit_email/:token' => 'home#inline_email_submit', as: :submit_email
   match 'jobs' => 'home#job_test', via: :get
-
+  match 'getStatus' => 'team_members#getStatus', via: :get
   
 end

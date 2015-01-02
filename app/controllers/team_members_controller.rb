@@ -20,6 +20,14 @@ class TeamMembersController < ApplicationController
 
 #-----------------------------------------------------------------------------------------------------
 
+  def getStatus
+    _start = params[:start]
+    _end = params[:end]
+    start_time =  DateTime.strptime(_start, "%s").inspect
+    end_time =  DateTime.strptime(_end,"%s").inspect
+    statuses = Status.where("created_at > ? AND created_at <  ?", start_time, end_time)
+    render :json => statuses.to_json, :status => :ok
+  end
 
   # PRIVATE
 

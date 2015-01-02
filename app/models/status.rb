@@ -47,7 +47,7 @@ class Status < ActiveRecord::Base
 
 
   def as_json(options = {})
-    super(:only => [:today_plan, :yesterday_plan, :tomorrow_plan, :oid])
+    super(:only => [:today_plan, :yesterday_plan, :tomorrow_plan, :oid, :created_at])
   end
 
 end
