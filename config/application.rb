@@ -26,7 +26,6 @@ module StatusManager
    # config.assets.paths << Rails.root.join('lib', 'assets', 'fonts', 'source-sans-pro')
     config.assets.paths << Rails.root.join("vendor","assets","bower_components")
     config.assets.paths << Rails.root.join("vendor","assets","bower_components","bootstrap-sass-official","assets","fonts")
-    config.assets.paths << Rails.root.join("vendor","assets","bower_components","angular-ui-calendar","src")
     config.assets.paths << Rails.root.join("vendor","assets", "calender")
     config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff)$)
 
