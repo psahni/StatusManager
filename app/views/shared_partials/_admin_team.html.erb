@@ -19,18 +19,19 @@
     <% end %>
 </section>
 
-<section class="section row">
+<section ng-controller="MembersCtrl" class="section row">
   <div class='section-heading col-sm-12'>
     <h4 class="inline pull-left ">
       Your Team Members
     </h4>
     <div class='inline pull-right'>      
-      <a class='minibutton primary' data-toggle="modal" href="#Modal" data-target="#Modal">+ Add Team Members</a>
+      <!--<a class='minibutton primary' data-toggle="modal" href="#Modal" data-target="#Modal">+ Add Team Members</a>-->
+      <a class='minibutton primary' data-target="#Modal" ng-click="showModal('Modal')">+ Add Team Members</a>
     </div>
   </div>
   <div ng-init="team_members = <%=current_team.members_except_lead.to_json%>"></div>
 
-  <div ng-controller="MembersCtrl" class="col-sm-12">
+  <div class="col-sm-12">
     <div ng-show="team_members.length==0" class="alert alert-text">
       No members are added to your team yet
     </div>
@@ -38,7 +39,7 @@
     <div ng-show="team_members.length > 0">
       <ul class="list-inline team-members-list">
         <li ng-repeat="m in team_members" class="col-sm-3">
-          <a href="#" title='{{m.email}}' ng-click="goToProfile(m)">{{m.name}}</a>
+          <a href="/" title='{{m.email}}' ng-click="goToProfile(m)">{{m.name}}</a>
         </li>
       </ul>
     </div>

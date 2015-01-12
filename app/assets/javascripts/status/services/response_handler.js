@@ -10,12 +10,12 @@ StatusApp.service('ResponseHandler', function(){
     }
 
 
-    this.resetDirty = function(responseData){
+    this.resetDirty = function(form, responseData){
         if(responseData == '') return ;
         angular.forEach(responseData, function(value, key){
-            $scope.form[key].$dirty = false;
-            $scope.form[key].$error = [];
-            $scope.form[key].$setValidity(key, true);
+            form[key].$dirty = false;
+            form[key].$error = [];
+            form[key].$setValidity(key, true);
         });
     }
 

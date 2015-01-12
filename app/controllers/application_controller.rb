@@ -29,8 +29,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_site_admin
-    logger.info "**always calling**"
-    http_basic_authenticate_with name: "dhh", password: "secret", except: :index
+    http_basic_authenticate_with name: "smadmin", password: "secret#123#", except: :index
   end
 
   def not_found

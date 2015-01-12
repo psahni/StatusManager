@@ -9,8 +9,7 @@ StatusApp.controller("MembersCtrl", function($scope, $location, $route, Member, 
         var response = Member.create($scope.member);
         response.success(function(){
            ResponseHandler.OnSuccess(function(){
-               $('#Modal').hide();
-               console.log($scope.team_members);
+               $('#Modal').hide();            
                $scope.team_members.push($scope.member);
            });
         });
@@ -19,11 +18,15 @@ StatusApp.controller("MembersCtrl", function($scope, $location, $route, Member, 
           ResponseHandler.OnError($scope.form, data);
         });
 	};
-
-
+   $scope.showModal = function(target){
+      $("#" + target).modal();    
+      $scope.form.$setPristine(true);
+      ResponseHandler.resetDirty($scope.form, $scope.form.$error);
+   };
    $scope.goToProfile = function(member){
         console.log(member);
         alert("Work on Progress!! Thanks for your patience");
+        return false;
    };
 
    $scope.errorMessage = function(name){

@@ -19,8 +19,6 @@
 //= require site.js
 //= require angular-route/angular-route
 //= require angular-resource/angular-resource
-//= require angular-ui-calendar/src/calendar.js
-//= require fullcalendar
 //= require calender/moment
 //= require status/services/response_handler
 //= require status/services/status
