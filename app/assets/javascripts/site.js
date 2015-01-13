@@ -7,7 +7,7 @@ jQuery(function($){
     });
 
     $('[data-toggle="tooltip"]').tooltip({
-        template: '<div class="tooltip status-tootip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
+        template: '<div class="tooltip status-tootip"><div class="tooltip-arrow"></div><div class="tooltip-inner">Prashant Sahni</div></div>',
         title: function(){
             return statusHtml($(this).data("status"));
         }
