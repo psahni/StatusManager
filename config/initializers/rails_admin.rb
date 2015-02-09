@@ -33,6 +33,9 @@ RailsAdmin.config do |config|
       configure :admin do
         field :name
       end
+      configure :teams do
+        field :name
+      end
     end
 
     ## With an audit adapter, you can add:

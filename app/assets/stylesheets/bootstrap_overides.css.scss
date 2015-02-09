@@ -41,6 +41,13 @@ h1, h2, h3, h4, h5{
 
 h1.heading{
   letter-spacing: 1.5px;
+  a{
+    color: white;
+    text-transform: none;
+  }
+  a:hover{
+    text-decoration: none;
+  }
 }
 
 div.alert-box {
@@ -314,4 +321,10 @@ a.outline{
 
 li.activity-line{
   padding: 7px;
+}
+
+#error_explanation{
+  margin-bottom: 30px;
+  border: 1px solid;
+  padding: 15px;
 }

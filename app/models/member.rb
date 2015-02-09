@@ -8,7 +8,7 @@
 #  name           :string(255)      not null
 #  email          :string(255)      not null
 #  gender         :string(10)
-#  birthday       :date
+#  birthday       :key => "value", date
 #  designation    :string(50)
 #  avtar          :string(255)
 #  active         :boolean          default(FALSE)
@@ -56,7 +56,7 @@ class Member < ActiveRecord::Base
   after_create   :create_team_member
   
 
-  attr_accessor :current_team_id
+  attr_accessor :current_team_id, :team_name
 
   def send_invite_to_admin
      AdminNotificationMailer.welcome_email(self.company, self).deliver! if self.role == Role.super_admin
@@ -75,9 +75,7 @@ class Member < ActiveRecord::Base
     field :company do
       inverse_of :admin
     end
-    field :teams do
-
-    end
+   
   end
 
 

@@ -9,6 +9,7 @@ StatusManager::Application.routes.draw do
     match '/members/confirmation', to: 'devise/confirmations#update', via: [:patch, :put], as: :update_member_confirmation
     match '/login', to: 'devise/sessions#new', via: :get
     match '/signup', to: 'devise/registrations#new', via: :get
+    match '/signup', to: 'devise/registrations#create', via: :post, as: :signup_post
   end
 
 
