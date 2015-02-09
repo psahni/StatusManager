@@ -7,8 +7,7 @@ class RegistrationsController < Devise::RegistrationsController
 	end
 
 	def create
-		super
-		logger.info resource.inspect
+	 super		
 	end
 
 

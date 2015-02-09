@@ -53,7 +53,8 @@ class Devise::ConfirmationsController < DeviseController
       sign_in resource
       redirect_to dashboard_path, notice: "You have been successfully confirmed"
     else
-      render :edit, confirmation_token: params[:confirmation_token]
+      #render :edit, confirmation_token: params[:confirmation_token]
+      render edit_member_confirmation_path(confirmation_token: params[:confirmation_token])
     end
 
   end
