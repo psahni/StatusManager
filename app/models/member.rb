@@ -31,8 +31,11 @@ class Member < ActiveRecord::Base
          :confirmable
 
 
+  attr_accessor :current_team_id, :team_name
+
   # Validations
   validates :name, :presence => true, :uniqueness => true
+  validates :team_name, :presence => true, :if => lambda{|member| member.new_record? && member.admin? }
   validates_confirmation_of :password
 
   # Associations
@@ -53,10 +56,8 @@ class Member < ActiveRecord::Base
   before_create  :add_standup_token
   before_create  :admin_checks
   after_create   :send_invite_to_admin
-  after_create   :create_team_member
-  
-
-  attr_accessor :current_team_id, :team_name
+  after_create   :create_team_member, :unless => lambda{|team| team.current_team_id.blank? }
+  after_create   :create_team, :if => lambda{|member| member.teams_members.blank? and member.admin? }
 
   def send_invite_to_admin
      AdminNotificationMailer.welcome_email(self.company, self).deliver! if self.role == Role.super_admin
@@ -79,6 +80,10 @@ class Member < ActiveRecord::Base
   end
 
 
+  def create_team
+    Team.create()
+  end
+
 
   def assign_random_password
     random_password = "abrakadabra@12345"
@@ -89,6 +94,8 @@ class Member < ActiveRecord::Base
     Rails.logger.info "--> updating password"
     self.password = params[:password]
     self.password_confirmation = params[:password_confirmation]
+    self.valid?
+    logger.info self.errors.inspect
     return false if not valid?
     confirm!
     save
