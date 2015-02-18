@@ -48,13 +48,11 @@ class Devise::ConfirmationsController < DeviseController
       redirect_to new_member_registration_path, notice: "Invalid Token"
       return
     end
-
     if resource.update_password_with_confirmation(params[:member])
       sign_in resource
       redirect_to dashboard_path, notice: "You have been successfully confirmed"
     else
-      #render :edit, confirmation_token: params[:confirmation_token]
-      render edit_member_confirmation_path(confirmation_token: params[:confirmation_token])
+      render action: :edit, confirmation_token: params[:confirmation_token]
     end
 
   end
