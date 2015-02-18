@@ -40,24 +40,30 @@ class Member < ActiveRecord::Base
 
   # Associations
   has_many :teams_members, 
-          class_name: "TeamsMembers"
+            class_name: "TeamsMembers",
+            dependent: :destroy 
   has_many :teams, 
-          :through => :teams_members, 
-          :dependent => :destroy,
-           :inverse_of => :members
+           :through => :teams_members, 
+           :dependent => :destroy,
+           :inverse_of => :members,
+           dependent: :destroy
 
   has_many :statuses
   belongs_to :company, :inverse_of => :members
   belongs_to :role
 
 
+
+  ##
+  ## => CALLBACKS
+  ##
   before_validation :assign_random_password,  :on => :create
 
   before_create  :add_standup_token
   before_create  :admin_checks
   after_create   :send_invite_to_admin
-  after_create   :create_team_member, :unless => lambda{|team| team.current_team_id.blank? }
-  after_create   :create_team, :if => lambda{|member| member.teams_members.blank? and member.admin? }
+  #after_create   :create_team_member, :unless => lambda{|team| team.current_team_id.blank? }
+  after_create   :create_team, :if => :team_admin?
 
   def send_invite_to_admin
      AdminNotificationMailer.welcome_email(self.company, self).deliver! if self.role == Role.super_admin
@@ -81,7 +87,11 @@ class Member < ActiveRecord::Base
 
 
   def create_team
-    Team.create()
+    Rails.logger.info "INSIDE TEAM CREATE"
+    team = Team.create(name: team_name)
+    Rails.logger.debug team.errors.inspect
+    team_member = TeamsMembers.create(member_id: self.id, team_id: team.id)   
+    Rails.logger.debug team_member.errors.inspect
   end
 
 
@@ -101,10 +111,6 @@ class Member < ActiveRecord::Base
     save
   end
 
-  def role?(_role)
-    self.role == _role
-  end
-
   def admin_checks
     if self.role?(Role.super_admin)
       self.skip_confirmation_notification!
@@ -121,6 +127,13 @@ class Member < ActiveRecord::Base
     Status.where("member_id = ? AND Date(created_at) = ?", self.id, Date.today).first
   end
 
+  ## Role
+  #------------------------------------------------------------------------------------------
+
+   def role?(_role)
+     self.role == _role
+   end
+
   def super_admin?
     role == Role.super_admin
   end
@@ -132,6 +145,8 @@ class Member < ActiveRecord::Base
   def member?
     role == Role.member
   end
+  #------------------------------------------------------------------------------------------
+  ##
 
   def create_team_member
     TeamsMembers.create!(member_id: self.id, team_id: current_team_id)
@@ -144,6 +159,12 @@ class Member < ActiveRecord::Base
   def send_standup_email
     Notification.standup_notify(self).deliver
   end
+
+
+  def team_admin?   
+    (self.teams_members.blank? and self.role == Role.admin) 
+  end
+
 
   ##
   ## DEVISE OVERRIDES
