@@ -14,8 +14,13 @@
       <ul>
         <li><a href="">Why & How</a></li>
         <li><a href="">Help</a></li>
-        <li><a href="/login">Login</a></li>
-        <li><a href="/signup" class="outline">Sign Up</a></li>
+        <% if member_signed_in? %>
+          <li><a href='<%=dashboard_path%>'>Dashboard</a></li>
+          <li><a href="<%=destroy_member_session_path%>">Logout</a></li>
+        <% else %>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/signup" class="outline">Sign Up</a></li>
+        <% end %>
       </ul>
     </nav>
   </div>

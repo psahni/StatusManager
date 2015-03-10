@@ -36,6 +36,7 @@ class Member < ActiveRecord::Base
   # Validations
   validates :name, :presence => true, :uniqueness => true
   validates :team_name, :presence => true, :if => lambda{|member| member.new_record? && member.admin? }
+  validate :uniqueness_of_team_name
   validates_confirmation_of :password
 
   # Associations
@@ -58,15 +59,23 @@ class Member < ActiveRecord::Base
   ## => CALLBACKS
   ##
   before_validation :assign_random_password,  :on => :create
-
   before_create  :add_standup_token
-  before_create  :admin_checks
-  after_create   :send_invite_to_admin
-  #after_create   :create_team_member, :unless => lambda{|team| team.current_team_id.blank? }
+  before_create  :admin_checks  
   after_create   :create_team, :if => :team_admin?
+  after_create   :add_to_team, :if => :member?
 
-  def send_invite_to_admin
-     AdminNotificationMailer.welcome_email(self.company, self).deliver! if self.role == Role.super_admin
+
+  #after_create   :send_invite_to_admin
+  # def send_invite_to_admin
+  #    AdminNotificationMailer.welcome_email(self.company, self).deliver! if self.role == Role.super_admin
+  # end
+
+  def uniqueness_of_team_name
+    if Team.where(name: team_name).first
+      self.errors.add(:team_name, "already taken")
+    else
+      return
+    end
   end
 
   rails_admin do
@@ -87,11 +96,17 @@ class Member < ActiveRecord::Base
 
 
   def create_team
-    Rails.logger.info "INSIDE TEAM CREATE"
-    team = Team.create(name: team_name)
-    Rails.logger.debug team.errors.inspect
-    team_member = TeamsMembers.create(member_id: self.id, team_id: team.id)   
-    Rails.logger.debug team_member.errors.inspect
+    if team_admin?
+      team = Team.create!(name: team_name)
+      team_member = TeamsMembers.create!(member_id: self.id, team_id: team.id)   
+    else
+      return
+    end
+  end
+
+  def add_to_team
+    Rails.logger.info "** ADDING TO TEAM**"
+    TeamsMembers.create!(member_id: self.id, team_id: current_team_id)   
   end
 
 

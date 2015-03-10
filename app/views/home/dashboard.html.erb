@@ -1,6 +1,6 @@
 <%=display_flash%>
 <div class="template row">
-    <% if current_member.super_admin? %>
+    <% if current_member.super_admin? || current_member.admin? %>
         <%=render :partial => "shared_partials/#{ @partial_name }" if @partial_name%>
     <% elsif current_member.member? %>
       <% if Status.created_for_today?(current_member)%>

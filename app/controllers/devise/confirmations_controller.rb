@@ -19,10 +19,10 @@ class Devise::ConfirmationsController < DeviseController
   # GET /resource/confirmation?confirmation_token=abcdef
   def show
     self.resource, original_token = resource_class.find_original_token(params[:confirmation_token])
-    logger.info "======================="
-    logger.info self.resource.inspect
-    logger.info original_token.inspect
-    logger.info "======================="
+    # logger.info "======================="
+    # logger.info self.resource.inspect
+    # logger.info original_token.inspect
+    # logger.info "======================="
     return render :text => "Invalid Token" if self.resource.blank?
     redirect_to edit_member_confirmation_path(confirmation_token: original_token) and return
     # yield resource if block_given?

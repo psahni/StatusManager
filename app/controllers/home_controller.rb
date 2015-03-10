@@ -30,6 +30,7 @@ class HomeController < ApplicationController
     # @member = Member.where(name: 'Nishutosh Sharma').first
     @activities =  current_team.activity_history
     role = current_member.role
+    Rails.logger.info role.inspect
     case role
         when Role.admin, Role.super_admin
          @partial_name = 'admin_team'

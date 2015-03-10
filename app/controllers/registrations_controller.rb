@@ -50,4 +50,12 @@ class RegistrationsController < Devise::RegistrationsController
     signup_get_path
   end
   
+  # Sets minimum password length to show to user
+  def set_minimum_password_length
+    if devise_mapping.validatable?
+      @minimum_password_length = resource_class.password_length.min
+    end
+  end
+  
+  
 end
